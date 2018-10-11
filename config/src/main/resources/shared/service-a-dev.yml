@@ -1,0 +1,45 @@
+spring:
+  profiles: dev
+
+server:
+  port: 9006
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+  instance:
+      lease-renewal-interval-in-seconds: 5
+      lease-expiration-duration-in-seconds: 10
+
+management:
+  security:
+    enabled: false
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 3 #线程池核心数
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 20 #当在配置时间窗口内达到此数量的失败后，进行短路。默认20个）
+        sleepWindowInMilliseconds: 5 #短路多久以后开始尝试是否恢复，默认5s）
+        errorThresholdPercentage: 50% #出错百分比阈值，当达到此阈值后，开始短路。默认50%）
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000 #调整全局超时错误时间，默认1000
+    SimpleControlledFailCommand:
+      circuitBreaker:
+        errorThresholdPercentage: 50
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+

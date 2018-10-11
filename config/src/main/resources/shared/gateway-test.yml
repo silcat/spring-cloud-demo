@@ -1,0 +1,44 @@
+spring:
+  profiles: test
+
+server:
+  port: 4000
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    service-a:
+      path: /sa/**
+      serviceId: service-a
+    service-b:
+      path: /sb/**
+      serviceId: service-b
+  host:
+    connect-timeout-millis: 25000
+    socket-timeout-millis: 5000
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 100
+
+ribbon:
+  ReadTimeout: 25000
+  SocketTimeout: 5000
+

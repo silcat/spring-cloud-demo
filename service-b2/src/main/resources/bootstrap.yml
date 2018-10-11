@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: @configProfile@
+  application:
+    name: service-b
+  cloud:
+    config:
+      uri: @configUri@
+      fail-fast: true
+      password: 6mS9WQ2M
+      username: user
+      profile: @configProfile@
+      name: service-b2
+
+management:
+  security:
+    enabled: false
+
