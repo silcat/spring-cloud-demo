@@ -6,6 +6,22 @@ spring:
           search-locations: classpath:/shared
   profiles:
      active: native
+  rabbitmq:
+    host: test4.duia.com
+    port: 5672
+    username: spring
+    password: 123456
+    exchange:
+      fanout:
+        loanflow: rrdloan.fanout.exchange.loanflow
+    queue:
+      send-credit: rrdloan.queue.loanflow.send.credit
+      receive-credit: rrdloan.queue.loanflow.receive.credit
+      # loanflow通知data-api，http失败后走MQ通道
+      push-credit: rrdloan.queue.loanflow.push.credit
+      # dataapi通知loanflow进件成功,http失败后走MQ通道
+      notify-loanflow: rrdloan.queue.dataapi.notify.loanflow
+
 
 server:
   port: 8888

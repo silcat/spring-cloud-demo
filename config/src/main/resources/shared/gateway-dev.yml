@@ -1,6 +1,10 @@
 spring:
   profiles: dev
-
+  # 重试机制
+  cloud:
+    loadbalancer:
+      retry:
+       enabled: true
 server:
   port: 4000
 
@@ -38,7 +42,18 @@ hystrix:
           semaphore:
             maxConcurrentRequests: 100
 
-ribbon:
-  ReadTimeout: 25000
-  SocketTimeout: 5000
+compute-service:
+  ribbon:
+    # 对所有操作请求都进行重试
+    OkToRetryOnAllOperations : true
+    # 切换实例的重试次数
+    MaxAutoRetriesNextServer : 2
+    # 对当前实例的重试次数
+    MaxAutoRetries : 1
+    ReadTimeout: 25000
+    SocketTimeout: 5000
+
+
+
+
 
