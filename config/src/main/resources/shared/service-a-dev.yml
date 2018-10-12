@@ -1,5 +1,19 @@
 spring:
   profiles: dev
+  rabbitmq:
+    host: 127.0.0.1
+    port: 15671
+    user: guest
+    password: guest
+    publisher-confirms: true
+    virtual-host: /
+    queue:
+      bus: config_bus
+      mes1: mes1
+      mes2: mes2
+    exchange:
+      topic: top_exchange
+      faut: faut_exchange
 
 server:
   port: 9006

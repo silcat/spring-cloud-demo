@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+     active: native
+
+server:
+  port: 8888
+
+security:
+  user:
+    password: 6mS9WQ2M
+
+#git仓库
+#spring:
+#
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/silcat/repo.git
+#          username: silcat #git用户名
+#          password: yang909983218 #git密码
+##          search-paths: group-one,group-two #查找目录
+##          basedir: D:\repo #克隆仓库地址
+##          clone-on-start: true #启动克隆git仓库
+##          force-pull: true #强制更新本地仓库
