@@ -20,4 +20,9 @@ public class Test {
         return serviceBFeginService.fallback();
     }
 
+    @PostMapping("/err")
+    public String err(){
+        return 1/0+"";
+    }
+
 }
