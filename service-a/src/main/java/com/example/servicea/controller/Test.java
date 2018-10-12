@@ -1,4 +1,5 @@
 package com.example.servicea.controller;
+
 import com.example.common.bo.TestRequestBo;
 import com.example.servicea.FeginService.ServiceBFeginService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -32,8 +33,8 @@ public class Test {
 
     @PostMapping("/mq")
     public String mq(){
-        rabbitTemplate.convertAndSend("top_exchange","");
-        return 1/0+"";
+        rabbitTemplate.convertAndSend("top_exchange","topic.message","message");
+        return "sucee";
     }
 
 

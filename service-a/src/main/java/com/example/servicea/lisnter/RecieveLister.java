@@ -11,7 +11,7 @@ import java.io.IOException;
 @Component
 public class RecieveLister {
 
-    @RabbitListener(queues = "${spring.rabbitmq.queue.mes1}")
+    @RabbitListener(queues = "mes1}")
     public void mes1(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag) {
         System.out.println(message);
         try {

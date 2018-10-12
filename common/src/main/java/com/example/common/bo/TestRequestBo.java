@@ -1,5 +1,6 @@
 package com.example.common.bo;
 
+
 public class TestRequestBo {
     private String name;
     private String value;
