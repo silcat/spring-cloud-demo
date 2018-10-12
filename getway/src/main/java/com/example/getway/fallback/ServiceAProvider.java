@@ -5,8 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
+
+
 @Component
 public class ServiceAProvider implements FallbackProvider {
+
     @Override
     public ClientHttpResponse fallbackResponse(Throwable cause) {
         return fallbackResponse();
@@ -19,7 +22,7 @@ public class ServiceAProvider implements FallbackProvider {
 
     @Override
     public ClientHttpResponse fallbackResponse() {
-        return new Respone(HttpStatus.OK,"zuul fallback");
-
+        return new Respone(HttpStatus.OK, "zu服务异常");
     }
+
 }

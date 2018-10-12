@@ -1,4 +1,5 @@
 package com.example.serviceb.controller;
+import com.example.common.bo.TestRequestBo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -6,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test {
 
     @PostMapping("/rpc")
-    public String rpc(){
-       return "来自B1的消息";
+    public String rpc(TestRequestBo testRequestB){
+       return "来自B1的消息："+testRequestB.toString();
     }
 
     @PostMapping("/fallback")

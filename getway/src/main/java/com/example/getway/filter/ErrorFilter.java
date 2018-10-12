@@ -1,5 +1,6 @@
 package com.example.getway.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
@@ -32,7 +33,7 @@ public class ErrorFilter extends ZuulFilter {
     public boolean shouldFilter() {
         // only forward to errorPath if it hasn't been forwarded to already
 //        return RequestContext.getCurrentContext().containsKey("throwable");
-        return true;
+        return false;
     }
 
     @Override
@@ -46,12 +47,12 @@ public class ErrorFilter extends ZuulFilter {
         ctx.setSendZuulResponse(false);
         ctx.setResponseStatusCode(HttpStatus.OK.value());
         try {
-            ctx.getResponse().getWriter().write("接口错误");
+            ctx.getResponse().getWriter().write(JSON.toJSONString("接口错误"));
         }catch (Exception e){
             e.printStackTrace();
             log.error("error:", e);
         }
 
-        return null;
+        return true;
     }
 }
