@@ -7,6 +7,9 @@ spring:
     password: guest
     publisher-confirms: true
     virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
     queue:
       bus: config_bus
       mes1: mes1
