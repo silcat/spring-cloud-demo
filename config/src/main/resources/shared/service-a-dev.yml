@@ -35,11 +35,5 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 1000 #调整全局超时错误时间，默认1000
-    SimpleControlledFailCommand:
-      circuitBreaker:
-        errorThresholdPercentage: 50
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+
 
