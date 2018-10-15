@@ -58,7 +58,7 @@ hystrix:
         isolation:
           strategy: THREAD #执行线程池隔离策略,默认
           thread:
-            timeoutInMilliseconds: 1000 #调整全局超时错误时间，默认1000
+            timeoutInMilliseconds: 5000 #调整全局超时错误时间，默认1000
 #        isolation:
 #          strategy: SEMAPHONE #执行信号量隔离策略
 #          semaphore:

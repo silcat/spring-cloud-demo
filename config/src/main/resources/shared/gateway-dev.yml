@@ -19,7 +19,7 @@ zuul:
       serviceId: service-b
   host:
     connect-timeout-millis: 25000
-    socket-timeout-millis: 15000
+    socket-timeout-millis: 5000
 
 eureka:
   client:
