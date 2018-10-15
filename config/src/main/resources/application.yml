@@ -1,4 +1,11 @@
 spring:
+  application:
+    name: config
+  rabbitmq:
+    host: 127.0.0.1
+    port: 15671
+    user: guest
+    password: guest
   cloud:
     config:
       server:
@@ -6,17 +13,21 @@ spring:
           search-locations: classpath:/shared
   profiles:
      active: native
-
 server:
   port: 8888
-
 security:
   user:
     password: 6mS9WQ2M
 
 #git仓库
 #spring:
-#
+#  application:
+#    name: config
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 15671
+#    user: guest
+#    password: guest
 #  cloud:
 #    config:
 #      server:
@@ -24,7 +35,7 @@ security:
 #          uri: https://github.com/silcat/repo.git
 #          username: silcat #git用户名
 #          password: yang909983218 #git密码
-##          search-paths: group-one,group-two #查找目录
+#          search-paths: share #查找目录
 ##          basedir: D:\repo #克隆仓库地址
-##          clone-on-start: true #启动克隆git仓库
-##          force-pull: true #强制更新本地仓库
+#          clone-on-start: true #启动克隆git仓库
+#          force-pull: true #强制更新本地仓库

@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceBFeginServiceImpl implements ServiceBFeginService {
 
     @Override
-    @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
+    @HystrixCommand(groupKey = "cb1",commandKey = "cb" )
     public String rpc(TestRequestBo testRequestBo) {
         return "rpc fallback";
     }
 
     @Override
-    @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
+    @HystrixCommand(groupKey = "cb1",commandKey = "cb1" )
     public String fallback() {
         return "b服务异常";
     }

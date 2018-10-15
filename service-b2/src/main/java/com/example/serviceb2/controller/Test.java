@@ -8,12 +8,16 @@ public class Test {
 
     @PostMapping("/rpc")
     public String rpc(TestRequestBo testRequestB){
+
         return "来自B2的消息："+testRequestB.toString();
     }
 
     @PostMapping("/fallback")
-    public String fallback(){
+    public String fallback() throws InterruptedException {
+        Thread.sleep(5000l);
         return "B2 FALLBACK";
     }
+
+
 
 }

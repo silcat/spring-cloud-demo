@@ -13,12 +13,6 @@ public class Test {
 
     @PostMapping("/fallback")
     public String fallback(){
-        try {
-            Thread.sleep(10000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         return "B1 FALLBACK";
     }
 
