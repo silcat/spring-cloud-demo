@@ -3,7 +3,7 @@ spring:
     name: config
   rabbitmq:
     host: 127.0.0.1
-    port: 15671
+    port: 5672
     user: guest
     password: guest
   cloud:

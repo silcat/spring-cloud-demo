@@ -5,6 +5,21 @@ spring:
     loadbalancer:
       retry:
        enabled: true
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    user: guest
+    password: guest
+  sleuth:
+    sampler:
+      percentage: 1
+    hystrix:
+      strategy:
+        enabled: true #禁用自定义Hystrix并发策略
+    web:
+      enabled: true #
+      skipPattern: http://localhost：4000/sa/retry #跳过的URI，不创建span
+
 server:
   port: 4000
 

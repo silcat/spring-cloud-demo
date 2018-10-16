@@ -2,10 +2,9 @@ spring:
   profiles: dev
   rabbitmq:
     host: 127.0.0.1
-    port: 15671
+    port: 5672
     user: guest
     password: guest
-
 server:
   port: 9004
 

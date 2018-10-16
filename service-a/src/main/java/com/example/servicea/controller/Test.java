@@ -22,8 +22,6 @@ public class Test {
 
     @Autowired
     private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
     @PostMapping("/rpc")
     public String rpc(TestRequestBo testRequestBo){
@@ -46,11 +44,7 @@ public class Test {
         return serviceBNoFallbackFeginService.fallback();
     }
 
-    @PostMapping("/mq")
-    public String mq(){
-        rabbitTemplate.convertAndSend("top_exchange","topic.message","message");
-        return "sucee";
-    }
+
 
 
 }
