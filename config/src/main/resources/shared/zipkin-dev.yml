@@ -23,8 +23,8 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: root
-    schema[0]: classpath:/zipkin.sql
-    initialize: true
+#    schema[0]: classpath:/zipkin.sql
+#    initialize: true
   rabbitmq:
     host: 127.0.0.1
     port: 5672
