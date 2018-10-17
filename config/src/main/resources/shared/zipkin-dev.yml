@@ -24,7 +24,8 @@ spring:
     username: root
     password: root
 #    schema[0]: classpath:/zipkin.sql
-#    initialize: true
+#  initialize: true
+#  continueOnError: true
   rabbitmq:
     host: 127.0.0.1
     port: 5672

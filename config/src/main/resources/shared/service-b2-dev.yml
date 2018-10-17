@@ -5,6 +5,12 @@ spring:
     port: 5672
     user: guest
     password: guest
+  zipkin:
+    service:
+      name: service-b2
+    enabled: true
+    sender:
+      type: rabbit
 server:
   port: 9004
 

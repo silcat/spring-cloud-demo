@@ -1,5 +1,4 @@
 test: 1
-
 spring:
   profiles: dev
   rabbitmq:
@@ -7,6 +6,10 @@ spring:
     port: 5672
     user: guest
     password: guest
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
 server:
   port: 9006
 

@@ -5,6 +5,8 @@ spring:
     port: 5672
     user: guest
     password: guest
+  zipkin:
+    enabled: false
 server:
   port: 8761
 
