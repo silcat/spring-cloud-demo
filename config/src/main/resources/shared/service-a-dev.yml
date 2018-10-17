@@ -1,4 +1,7 @@
 test: 1
+server:
+  port: 9006
+
 spring:
   profiles: dev
   rabbitmq:
@@ -10,8 +13,6 @@ spring:
     enabled: true
     sender:
       type: rabbit
-server:
-  port: 9006
 
 eureka:
   client:

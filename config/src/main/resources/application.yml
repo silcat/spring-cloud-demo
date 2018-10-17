@@ -1,4 +1,6 @@
 spring:
+  zipkin:
+    enabled: false
   application:
     name: config
   rabbitmq:
