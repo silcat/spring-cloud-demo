@@ -8,12 +8,12 @@ public class Test {
 
     @PostMapping("/rpc")
     public String rpc(TestRequestBo testRequestB){
-       return 1/0+"来自B1的消息："+testRequestB.toString();
+       return "来自B1的消息："+testRequestB.getName()+testRequestB.getValue();
     }
 
     @PostMapping("/fallback")
     public String fallback(){
-        return "B1 FALLBACK";
+        return 1/0+"B1 FALLBACK";
     }
 
 }
