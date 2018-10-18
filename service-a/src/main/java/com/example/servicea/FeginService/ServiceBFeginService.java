@@ -13,7 +13,7 @@ public interface ServiceBFeginService {
     @PostMapping(value ="/rpc")
     String rpc(TestRequestBo testRequestBo);
 
-    @GetMapping(value ="/fallback")
+    @PostMapping(value ="/fallback")
     String fallback();
 
 }

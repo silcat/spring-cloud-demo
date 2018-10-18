@@ -4,6 +4,12 @@
 或者https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/
 - 下载完jar包命令行运行（java -jar zipkin-server-2.11.7-exec.jar --logging.level.zipkin2=DEBUG --RABBIT_ADDRESSES=localhost:5672 --RABBIT_USER=guest --RABBIT_PASSWORD=guest --STORAGE_TYPE=mysql --MYSQL_DB=test --MYSQL_HOST=127.0.0.1 --MYSQL_TCP_PORT=3306 --MYSQL_USER=root --MYSQL_PASS=root
 ）
+#lockback日志参数
+"service": "${springAppName:-}",服务名称
+"trace": "%X{X-B3-TraceId:-}",打印traceid
+"span": "%X{X-B3-SpanId:-}",
+"parent": "%X{X-B3-ParentSpanId:-}",
+
 #环境变量信息
 
 环境变量文档：https://github.com/openzipkin/zipkin/tree/master/zipkin-server#configuration-for-the-ui
@@ -32,9 +38,9 @@ Property | Description | Description
  `MYSQL_TCP_PORT`| Defaults to 3306
  `MYSQL_MAX_CONNECTIONS`| Maximum concurrent connections, defaults to 10
  `MYSQL_USE_SSL`|Requires `javax.net.ssl.trustStore` and `javax.net.ssl.trustStorePassword`, defaults to false
- `STORAGE_TYPE`:mysql
+ `STORAGE_TYPE`|mysql
 
-- rabbitMq
+
 
 
 ### RabbitMQ Collector环境变量
