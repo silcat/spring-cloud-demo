@@ -1,15 +1,15 @@
 spring:
   profiles:
-    active: @configProfile@
+    active: dev
   application:
     name: service-b
   cloud:
     config:
-      uri: @configUri@
+      uri: http://config:8888
       fail-fast: true
       password: 6mS9WQ2M
       username: user
-      profile: @configProfile@
+      profile: dev
       name: service-b2
 
 management:
