@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: hystrix-turbine
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      password: 6mS9WQ2M
+      username: user
+      profile: dev
+management:
+  security:
+    enabled: false
