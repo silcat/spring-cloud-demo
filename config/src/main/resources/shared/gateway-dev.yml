@@ -14,13 +14,7 @@ spring:
     enabled: true
     sender:
       type: rabbit
-  sleuth:
-    sampler:
-      percentage: 0.1
-    web:
-      skip-pattern: /sa.*/|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
-    scheduled:
-      skip-pattern: ""
+
 server:
   port: 4000
 

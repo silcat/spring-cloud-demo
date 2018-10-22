@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceBFeginServiceImpl implements ServiceBFeginService {
 
     @Override
-    @NewSpan("rpc.fallback.newspan.")
+    @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
     public String rpc(TestRequestBo testRequestBo) {
         return "rpc fallback";
     }
 
     @Override
-    @NewSpan("fallback.fallback.newspan.")
-    public String fallback( ) {
+    @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
+    public String fallback() {
         return "b服务异常";
     }
 }

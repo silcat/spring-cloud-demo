@@ -20,7 +20,15 @@ spring:
     user: guest
     password: guest
 
+
 turbine:
-  appConfig: service-a,service-b,service-b2
-  clusterNameExpression: "default"
-  combine-host-port: true
+  stream:
+    port: 8989
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
