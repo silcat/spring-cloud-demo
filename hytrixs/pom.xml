@@ -16,7 +16,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
     </dependencies>
     <profiles>
