@@ -14,6 +14,11 @@ spring:
     enabled: true
     sender:
       type: rabbit
+  sleuth:
+    web:
+      skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
+    scheduled:
+      skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
 
 server:
   port: 4000

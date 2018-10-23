@@ -24,11 +24,7 @@ spring:
 turbine:
   stream:
     port: 8989
-
+  combine-host-port: true
 management:
   security:
     enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: hystrix.stream
