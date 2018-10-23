@@ -19,7 +19,13 @@ spring:
     port: 5672
     user: guest
     password: guest
-
+  cloud:
+    #spring-cloud-stream
+    stream:
+      bindings:
+        turbineStreamInput:
+          destination: springCloudHystrixStream #指定turbine的exchange（默认值）
+          group: turbine #指定turbine消费队列（持久化）
 
 turbine:
   stream:
