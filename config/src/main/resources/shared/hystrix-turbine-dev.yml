@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8001 #监控面板页面端口
 
 eureka:
   client:
@@ -29,8 +29,9 @@ spring:
 
 turbine:
   stream:
-    port: 8989
+    port: 8989 #指定turbine请求端口
   combine-host-port: true
+
 management:
   security:
-    enabled: false
+    enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
