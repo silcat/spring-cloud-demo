@@ -13,6 +13,8 @@ spring:
     enabled: true
     sender:
       type: rabbit
+    rabbitmq:
+      queue: rrdloan.queue.account.sleuth.zipkin #默认值为zipkin
   sleuth:
     web:
       skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream

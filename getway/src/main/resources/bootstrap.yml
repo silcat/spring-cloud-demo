@@ -8,8 +8,7 @@ spring:
       password: 6mS9WQ2M
       username: user
       profile: dev
-    stream:
-      binders:
+
 
 
 
