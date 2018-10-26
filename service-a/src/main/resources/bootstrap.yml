@@ -10,3 +10,14 @@ spring:
       password: 6mS9WQ2M
       username: user
       profile: dev
+
+management:
+  security:
+    # 仅限于 开发环境可对security进行关闭。
+    enabled: false
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        descriptions: true
+

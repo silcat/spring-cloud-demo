@@ -29,10 +29,17 @@ eureka:
       lease-renewal-interval-in-seconds: 5
       lease-expiration-duration-in-seconds: 10
 
-management:
-  security:
-    enabled: false
-
+#management:
+#  security:
+#    enabled: false
+#  metrics:
+#    export:
+#      prometheus:
+#        enabled: true
+#        descriptions: true
+#    distribution:
+#      percentiles-histogram:
+#        http: true
 feign:
   hystrix:
     enabled: true

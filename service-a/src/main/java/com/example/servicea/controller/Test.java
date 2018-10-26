@@ -3,6 +3,7 @@ package com.example.servicea.controller;
 import com.example.common.bo.TestRequestBo;
 import com.example.servicea.FeginService.ServiceBFeginService;
 import com.example.servicea.FeginService.ServiceBNoFallbackFeginService;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,12 @@ private Tracer tracer;
     private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
 
     @PostMapping("/rpc")
+    @Timed(
+            value = "servicea.test.request",
+            histogram = true,
+            percentiles = {0.95, 0.99},
+            extraTags = {"version", "1.0"}
+    )
     public String rpc(TestRequestBo testRequestBo){
         String rpc = serviceBFeginService.rpc(testRequestBo);
         return rpc;

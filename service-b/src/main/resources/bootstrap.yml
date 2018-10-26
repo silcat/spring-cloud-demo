@@ -11,8 +11,5 @@ spring:
       username: user
       profile: @configProfile@
 
-management:
-  security:
-    enabled: false
 
 
