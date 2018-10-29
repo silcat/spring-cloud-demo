@@ -16,6 +16,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <!--turbine服务器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
         </dependency>
         <dependency>
@@ -25,6 +30,47 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+        <!--zipkin服务器-->
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-collector-rabbitmq</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-storage-mysql</artifactId>
+        </dependency>
+        <!--保存到数据库需要如下依赖-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- 移除嵌入式tomcat插件 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!--本地调试jar时请勿开启，需要打war也无需开启-->
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
     <profiles>

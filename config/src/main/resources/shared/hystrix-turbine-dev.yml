@@ -12,12 +12,10 @@ eureka:
 
 spring:
   profiles: dev
-  sleuth:
-    enabled: false
   rabbitmq:
     host: 127.0.0.1
     port: 5672
-    user: guest
+    username: guest
     password: guest
   cloud:
     #spring-cloud-stream
@@ -26,11 +24,32 @@ spring:
         turbineStreamInput:
           destination: springCloudHystrixStream #指定turbine的exchange（默认值）
           group: turbine #指定turbine消费队列（持久化）
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    validation-query: SELECT 1
+    test-on-borrow: true
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800
+  sleuth:
+    enabled: true
+
+zipkin:
+  collector:
+    rabbitmq:
+      addresses: 127.0.0.1:5672
+      username: guest
+      password: guest
+      queue: rrdloan.queue.account.sleuth.zipkin #默认值为zipkin
+      concurrency: 1
+  storage:
+    type: mysql
 
 turbine:
   stream:
     port: 8989 #指定turbine请求端口
-  combine-host-port: true
 
 management:
   security:

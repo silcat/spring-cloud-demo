@@ -20,6 +20,9 @@ spring:
       skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
     scheduled:
       skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
+    metrics:
+      servo:
+        enabled: false
 eureka:
   client:
     registry-fetch-interval-seconds: 5
@@ -29,9 +32,9 @@ eureka:
       lease-renewal-interval-in-seconds: 5
       lease-expiration-duration-in-seconds: 10
 
-#management:
-#  security:
-#    enabled: false
+management:
+  security:
+    enabled: false
 #  metrics:
 #    export:
 #      prometheus:
