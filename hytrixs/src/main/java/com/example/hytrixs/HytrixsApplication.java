@@ -10,7 +10,6 @@ import zipkin.server.internal.EnableZipkinServer;
 @SpringBootApplication
 @EnableTurbineStream
 @EnableHystrixDashboard
-@EnableDiscoveryClient
 @EnableZipkinServer
 public class HytrixsApplication {
 

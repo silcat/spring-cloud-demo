@@ -4,6 +4,11 @@ server:
 
 spring:
   profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -74,5 +79,26 @@ hystrix:
 #            maxConcurrentRequests: 100 #当隔离策略使用信号量时，该属性用来配置信号量的大小，当最大并发请求数达到该设置值，后续的请求将会被拒绝
 #      requestLog:
 #        enabled: true #设置HystrixCommand执行和事件是否打印到HystrixRequestLog中
+
+#mybatis
+mybatis:
+  type-aliases-package: com.example.common.model
+  mapper-locations: classpath:mapper/*.xml
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+#页码<=0 查询第一页，页码>=总页数查询最后一页
+  reasonable: true
+#支持通过 Mapper 接口参数来传递分页参数
+  supportMethodsArguments: true
+#分页尺寸为0时查询所有纪录不再执行分页
+  page-size-zero: "true"
+
+#tk.mapper配置
+mapper:
+  mappers: com.example.servicea.core.Mapper
+  not-empty: true
+  identity: mysql
+
 
 

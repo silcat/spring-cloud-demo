@@ -21,3 +21,8 @@ management:
         enabled: true
         descriptions: true
 
+#tk.mapper配置
+mapper:
+  mappers: com.example.servicea.core.Mapper
+  not-empty: true
+  identity: mysql

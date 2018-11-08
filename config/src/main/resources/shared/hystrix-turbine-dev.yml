@@ -3,12 +3,7 @@ server:
 
 eureka:
   client:
-    registry-fetch-interval-seconds: 5
-    serviceUrl:
-      defaultZone: http://registry:8761/eureka/
-  instance:
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10
+    enabled: false
 
 spring:
   profiles: dev
@@ -29,6 +24,8 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+    schema[0]: classpath:/zipkin.sql
+    initialize: true
     validation-query: SELECT 1
     test-on-borrow: true
     test-while-idle: true

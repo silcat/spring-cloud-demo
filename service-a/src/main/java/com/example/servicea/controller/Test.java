@@ -1,18 +1,15 @@
 package com.example.servicea.controller;
 
 import com.example.common.bo.TestRequestBo;
+import com.example.common.model.Bank;
 import com.example.servicea.FeginService.ServiceBFeginService;
 import com.example.servicea.FeginService.ServiceBNoFallbackFeginService;
-import io.micrometer.core.annotation.Timed;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.example.servicea.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.actuate.trace.Trace;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.Tracer;
-import org.springframework.cloud.sleuth.annotation.ContinueSpan;
-import org.springframework.cloud.sleuth.annotation.NewSpan;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,17 +23,13 @@ private Tracer tracer;
 
     @Autowired
     private ServiceBFeginService serviceBFeginService;
+    @Autowired
+    private BankService bankService;
 
     @Autowired
     private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
 
     @PostMapping("/rpc")
-    @Timed(
-            value = "servicea.test.request",
-            histogram = true,
-            percentiles = {0.95, 0.99},
-            extraTags = {"version", "1.0"}
-    )
     public String rpc(TestRequestBo testRequestBo){
         String rpc = serviceBFeginService.rpc(testRequestBo);
         return rpc;
@@ -48,8 +41,8 @@ private Tracer tracer;
     }
 
     @PostMapping("/config")
-    public String config(){
-        return serviceBFeginService.fallback();
+    public Bank config(){
+        return bankService.test();
     }
 
     @PostMapping("/retry")
