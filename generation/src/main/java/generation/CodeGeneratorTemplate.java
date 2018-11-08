@@ -1,7 +1,6 @@
-package com.example.generation;
+package generation;
 
 import freemarker.template.TemplateExceptionHandler;
-import lombok.*;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
@@ -26,7 +25,7 @@ public class CodeGeneratorTemplate {
     private static  String PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
     public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
     public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
-    private static  String  TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
+    private static  String  TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/resources/generator/template";//模板位置
 
     private static  String  JAVA_PATH = "/src/main/java"; //java文件路径
     private static  String  RESOURCES_PATH = "/src/main/resources";//资源文件路径
