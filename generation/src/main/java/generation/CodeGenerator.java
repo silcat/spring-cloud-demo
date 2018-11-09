@@ -13,7 +13,6 @@ public class CodeGenerator {
     public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"service-a";//controller,service ,mapper对应的moduel
     public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"common";//model对应的moduel
 
-
     public static void main(String[] args) {
         genCode("bank");
 

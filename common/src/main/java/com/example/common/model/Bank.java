@@ -3,6 +3,7 @@ package com.example.common.model;
 import javax.persistence.*;
 
 public class Bank {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -14,10 +15,6 @@ public class Bank {
      */
     private String name;
 
-    /**
-     * 银行枚举值
-     */
-    private String desc;
 
     /**
      * 银行编码
@@ -83,23 +80,6 @@ public class Bank {
         this.name = name;
     }
 
-    /**
-     * 获取银行枚举值
-     *
-     * @return desc - 银行枚举值
-     */
-    public String getDesc() {
-        return desc;
-    }
-
-    /**
-     * 设置银行枚举值
-     *
-     * @param desc 银行枚举值
-     */
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     /**
      * 获取银行编码
