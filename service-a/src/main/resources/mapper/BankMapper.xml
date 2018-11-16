@@ -8,6 +8,7 @@
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="rrd_code" jdbcType="VARCHAR" property="rrdCode" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="enable" jdbcType="TINYINT" property="enable" />

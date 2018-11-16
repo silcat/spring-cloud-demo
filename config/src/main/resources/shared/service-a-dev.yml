@@ -1,9 +1,11 @@
 test: 1
 server:
   port: 9006
-
 spring:
   profiles: dev
+  boot:
+    admin:
+      url: http://localhost:8001
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
@@ -100,5 +102,7 @@ mapper:
   not-empty: true
   identity: mysql
 
-
+#admin显示日志信息配置
+logging:
+  path: /Users/yangtianfeng/Downloads/
 

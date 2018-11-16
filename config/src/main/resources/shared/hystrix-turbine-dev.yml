@@ -6,6 +6,14 @@ eureka:
     enabled: false
 
 spring:
+  boot:
+    admin:
+      url: http://localhost:8991
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,hystrix.stream,activiti
+      turbine:
+        clusters: "default"
+
   profiles: dev
   rabbitmq:
     host: 127.0.0.1
@@ -25,7 +33,7 @@ spring:
     username: root
     password: root
     schema[0]: classpath:/zipkin.sql
-    initialize: true
+    initialize: false
     validation-query: SELECT 1
     test-on-borrow: true
     test-while-idle: true
@@ -34,6 +42,8 @@ spring:
     enabled: true
 
 zipkin:
+  ui:
+    enabled: false
   collector:
     rabbitmq:
       addresses: 127.0.0.1:5672
