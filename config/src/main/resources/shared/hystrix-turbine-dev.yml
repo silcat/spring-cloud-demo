@@ -82,10 +82,10 @@ management:
   security:
     enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
 
-#security:
-#  user:
-#    name: admin
-#    password: admin
-#  basic:
-#    enabled: true
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: true
 
