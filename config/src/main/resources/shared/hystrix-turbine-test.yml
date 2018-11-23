@@ -11,42 +11,33 @@ eureka:
     lease-expiration-duration-in-seconds: 10
 
 spring:
+  profiles: dev
   boot:
     admin:
       contextPath: /monitor
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,hystrix.stream,activiti
       turbine:
         clusters: "default"
-        url: http://localhost:8989/turbine.stream
-  profiles: dev
+        url: ${SPRING_BOOT_ADMIN_TURBINE_URL:http://localhost:8989/turbine.stream}
+      username: admin    #These two are needed so that the client
+      password: admin   #can register at the protected server api
+      client:
+        metadata:
+          user.name: admin          #These two are needed so that the server
+          user.password: admin  #c
   rabbitmq:
     host: 127.0.0.1
     port: 5672
     username: guest
     password: guest
-#  cloud:
-#    discovery:
-#      client:
-#        simple:
-#          instances:
-#            monitor:
-#            - uri: http://localhost:8001
-#              metadata:
-#                management.context-path: /
-#            turbin:
-#            - uri: http://localhost:8989
-#              metadata:
-#                management.context-path: /
-#            service-a:
-#            - uri: http://localhost:9006
-#              metadata:
-#                management.context-path: /
-
-    #spring-cloud-stream
-    stream:
-      bindings:
-        turbineStreamInput:
-          destination: springCloudHystrixStream #指定turbine的exchange（默认值）
-          group: turbine #指定turbine消费队列（持久化）
+  cloud:
+  #spring-cloud-stream
+  #    stream:
+  #      bindings:
+  #        turbineStreamInput:
+  #          destination: springCloudHystrixStream #指定turbine的exchange（默认值）
+  #          group: turbine #指定turbine消费队列（持久化）
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -63,7 +54,8 @@ spring:
 
 zipkin:
   ui:
-    enabled: false
+    enabled: true
+    basepath: /zipkin
   collector:
     rabbitmq:
       addresses: 127.0.0.1:5672
@@ -82,10 +74,9 @@ management:
   security:
     enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
 
-#security:
-#  user:
-#    name: admin
-#    password: admin
-#  basic:
-#    enabled: true
-
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: false

@@ -6,6 +6,10 @@ spring:
   boot:
     admin:
       url: http://localhost:8001
+      client:
+        metadata:
+          user.name: admin          #These two are needed so that the server
+          user.password: admin  #c
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
@@ -42,14 +46,10 @@ eureka:
 management:
   security:
     enabled: false
-#  metrics:
-#    export:
-#      prometheus:
-#        enabled: true
-#        descriptions: true
-#    distribution:
-#      percentiles-histogram:
-#        http: true
+security:
+  user:
+    name: admin
+    password: admin
 feign:
   hystrix:
     enabled: true

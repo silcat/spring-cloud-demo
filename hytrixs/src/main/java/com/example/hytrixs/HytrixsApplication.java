@@ -13,6 +13,7 @@ import zipkin.server.internal.EnableZipkinServer;
 @EnableHystrixDashboard
 @EnableZipkinServer
 @EnableAdminServer
+@EnableDiscoveryClient
 public class HytrixsApplication {
 
     public static void main(String[] args) {
