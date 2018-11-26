@@ -10,8 +10,8 @@ public class CodeGenerator {
     private static final String JDBC_PASSWORD = "admin";
     private static String BASE_COMMON_PACKAGE = "com.example.common";//model对应的moduel基础包名称
     private static String BASE_MAPPER_PACKAGE = "com.example.clientone";//controller,service ,mapper对应的moduel基础包名称
-    public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"service-a";//controller,service ,mapper对应的moduel
-    public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"common";//model对应的moduel
+    public static  String  MODULE_PROJECT_PATH = "service-a";//controller,service ,mapper对应的moduel
+    public static  String  MODEL_PROJECT_PATH = "common";//model对应的moduel
 
     public static void main(String[] args) {
         genCode("bank");
@@ -28,6 +28,7 @@ public class CodeGenerator {
         CodeGeneratorTemplate.MODULE_PROJECT_PATH =MODULE_PROJECT_PATH;
 
         CodeGeneratorTemplate.genModelAndMapper(tableNames);
+        CodeGeneratorTemplate.genService(tableNames);
 
     }
 }

@@ -23,9 +23,11 @@ public class CodeGeneratorTemplate {
     private static  String  JDBC_DIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
     private static  String PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
-    public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
-    public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
-    private static  String  TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/resources/generator/template";//模板位置
+    public static  String  MODULE_PROJECT_NAME = "generation";//项目在硬盘上的基础路径
+    public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODULE_PROJECT_NAME;//项目在硬盘上的基础路径
+    public static  String  MODEL_PROJECT_NAME = "generation";//项目在硬盘上的基础路径
+    public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODEL_PROJECT_NAME;//项目在硬盘上的基础路径
+    private static  String  TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/main/resources/template";//模板位置
 
     private static  String  JAVA_PATH = "/src/main/java"; //java文件路径
     private static  String  RESOURCES_PATH = "/src/main/resources";//资源文件路径
@@ -35,7 +37,7 @@ public class CodeGeneratorTemplate {
     private static  String  MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model";//Model所在包
     private static  String  MAPPER_PACKAGE = BASE_MODULE_PACKAGE  + ".mapper";//Mapper所在包
     private static  String  SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包
-    private static  String  SERVICE_IMPL_PACKAGE = BASE_MODULE_PACKAGE + ".impl";//ServiceImpl所在包
+    private static  String  SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
     private static  String  CONTROLLER_PACKAGE = BASE_MODULE_PACKAGE  + ".web";//Controller所在包
     private static  String  MAPPER_INTERFACE_REFERENCE = BASE_MODULE_PACKAGE+ ".core.Mapper";//Mapper插件基础接口的完全限定名
 
@@ -46,10 +48,17 @@ public class CodeGeneratorTemplate {
     private static  String  AUTHOR = "CodeGenerator";//@author
     private static  String  DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
+
    public static void genModelAndMapper(String... tableNames) {
         Arrays.stream(tableNames)
                 .forEach(tableName ->{
                     genModelAndMapper(tableName);
+                });
+    }
+    public static void genService(String... tableNames) {
+        Arrays.stream(tableNames)
+                .forEach(tableName ->{
+                    genService(tableName);
                 });
     }
 
@@ -139,7 +148,7 @@ public class CodeGeneratorTemplate {
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
             data.put("basePackage", BASE_COMMON_PACKAGE);
-            File file = new File(MODEL_PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_SERVICE + modelNameUpperCamel + "Service.java");
+            File file = new File(MODULE_PROJECT_PATH+ JAVA_PATH + PACKAGE_PATH_SERVICE + modelNameUpperCamel + "Service.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
@@ -147,7 +156,7 @@ public class CodeGeneratorTemplate {
                     new FileWriter(file));
             System.out.println(modelNameUpperCamel + "Service.java 生成成功");
 
-            File file1 = new File(MODEL_PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_SERVICE_IMPL + modelNameUpperCamel + "ServiceImpl.java");
+            File file1 = new File(MODULE_PROJECT_PATH  + JAVA_PATH + PACKAGE_PATH_SERVICE_IMPL + modelNameUpperCamel + "ServiceImpl.java");
             if (!file1.getParentFile().exists()) {
                 file1.getParentFile().mkdirs();
             }

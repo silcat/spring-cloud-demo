@@ -1,4 +1,4 @@
-package com.example.clientone.FeginService;
+package com.example.clientone.feginService;
 
 import com.example.common.bo.TestRequestBo;
 import org.springframework.cloud.netflix.feign.FeignClient;

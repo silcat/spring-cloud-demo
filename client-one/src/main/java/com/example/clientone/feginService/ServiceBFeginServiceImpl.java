@@ -1,4 +1,4 @@
-package com.example.clientone.FeginService;
+package com.example.clientone.feginService;
 
 import com.example.common.bo.TestRequestBo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;

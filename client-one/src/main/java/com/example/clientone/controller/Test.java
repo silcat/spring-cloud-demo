@@ -2,8 +2,8 @@ package com.example.clientone.controller;
 
 import com.example.common.bo.TestRequestBo;
 import com.example.common.model.Bank;
-import com.example.clientone.FeginService.ServiceBFeginService;
-import com.example.clientone.FeginService.ServiceBNoFallbackFeginService;
+import com.example.clientone.feginService.ServiceBFeginService;
+import com.example.clientone.feginService.ServiceBNoFallbackFeginService;
 import com.example.clientone.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

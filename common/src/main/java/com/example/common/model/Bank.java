@@ -3,7 +3,6 @@ package com.example.common.model;
 import javax.persistence.*;
 
 public class Bank {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
