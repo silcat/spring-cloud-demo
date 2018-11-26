@@ -1,16 +1,15 @@
 spring:
   profiles:
-    active: dev
+    active: @configProfile@
   application:
-    name: hystrix-turbine
+    name: monitor
   cloud:
     config:
-      uri: http://config:8888
+      uri: @configUri@
       fail-fast: true
       password: 6mS9WQ2M
       username: user
-      profile: dev
-management:
-  security:
-    enabled: false
+      profile: @configProfile@
+      name: monitor-server-admin,monitor-server,monitor-server-zipkin
+
 

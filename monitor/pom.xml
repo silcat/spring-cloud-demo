@@ -105,20 +105,20 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>dev</id>
+           <id>demo</id>
             <properties>
                 <configUri>http://config:8888</configUri>
-                <configProfile>dev</configProfile>
+                <configProfile>demo</configProfile>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
         <profile>
-            <id>test</id>
+            <id>pro</id>
             <properties>
                 <configUri>http://rrdloan-config.test.rrdbg.com</configUri>
-                <configProfile>test</configProfile>
+                <configProfile>pro</configProfile>
             </properties>
         </profile>
     </profiles>

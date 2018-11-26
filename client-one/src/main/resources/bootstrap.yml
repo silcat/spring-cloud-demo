@@ -1,12 +1,13 @@
 spring:
   profiles:
-    active: dev
+    active: @configProfile@
   application:
-    name: service-a
+    name: client-one
   cloud:
     config:
-      uri: http://config:8888
+      name: client-one,client-hystixs,client-monitor,client-tkmapper
+      uri: @configUri@
       fail-fast: true
       password: 6mS9WQ2M
       username: user
-      profile: dev
+      profile: @configProfile@

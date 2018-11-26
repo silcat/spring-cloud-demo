@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: @configProfile@
   application:
     name: registry
   cloud:
