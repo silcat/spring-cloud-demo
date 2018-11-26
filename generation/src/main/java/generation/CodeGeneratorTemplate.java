@@ -31,7 +31,7 @@ public class CodeGeneratorTemplate {
     private static  String  RESOURCES_PATH = "/src/main/resources";//资源文件路径
 
     public static  String  BASE_COMMON_PACKAGE = "com.example.common";//项目基础包名称
-    public static  String  BASE_MODULE_PACKAGE = "com.example.servicea";//项目基础包名称
+    public static  String  BASE_MODULE_PACKAGE = "com.example.clientone";//项目基础包名称
     private static  String  MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model";//Model所在包
     private static  String  MAPPER_PACKAGE = BASE_MODULE_PACKAGE  + ".mapper";//Mapper所在包
     private static  String  SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包

@@ -11,13 +11,13 @@
     <modules>
         <module>common</module>
         <module>generation</module>
-        <module>regist</module>
+        <module>registry</module>
         <module>config</module>
-        <module>getway</module>
-        <module>service-a</module>
-        <module>service-b</module>
-        <module>hytrixs</module>
-        <module>service-b2</module>
+        <module>gateway</module>
+        <module>client-one</module>
+        <module>client-two1</module>
+        <module>client-two2</module>
+        <module>monitor</module>
     </modules>
 
     <parent>
