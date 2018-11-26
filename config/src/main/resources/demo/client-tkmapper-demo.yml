@@ -1,0 +1,22 @@
+#mybatis
+mybatis:
+  type-aliases-package: com.example.common.model
+  mapper-locations: classpath:mapper/*.xml
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+#页码<=0 查询第一页，页码>=总页数查询最后一页
+  reasonable: true
+#支持通过 Mapper 接口参数来传递分页参数
+  supportMethodsArguments: true
+#分页尺寸为0时查询所有纪录不再执行分页
+  page-size-zero: "true"
+
+#tk.mapper配置
+mapper:
+  mappers: com.example.clientone.core.Mapper
+  not-empty: true
+  identity: mysql
+
+
+

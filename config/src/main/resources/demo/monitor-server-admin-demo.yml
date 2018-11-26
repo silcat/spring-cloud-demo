@@ -1,0 +1,39 @@
+#基于eureka服务发现方式
+spring:
+  boot:
+    admin:
+      contextPath: /monitor
+      turbine:
+        clusters: "default"
+        url: http://localhost:8989/turbine.stream
+
+management:
+  security:
+    enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
+
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: true
+
+#未将monitor注册到服务中心服务发现方式
+
+#  cloud:
+#    discovery:
+#      client:
+#        simple:
+#          instances:
+#            monitor:
+#            - uri: http://localhost:8001
+#              metadata:
+#                management.context-path: /
+#            turbin:
+#            - uri: http://localhost:8989
+#              metadata:
+#                management.context-path: /
+#            service-a:
+#            - uri: http://localhost:9006
+#              metadata:
+#                management.context-path: /

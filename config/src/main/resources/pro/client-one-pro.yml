@@ -1,0 +1,111 @@
+server:
+  port: 9006
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+spring:
+  profiles: pro
+  boot:
+    admin:
+      url: http://localhost:8001
+      client:
+        metadata:
+          user.name: admin
+          user.password: admin
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    user: guest
+    password: guest
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+    rabbitmq:
+      queue: rrdloan.queue.account.sleuth.zipkin #默认值为zipkin
+  sleuth:
+    enabled: true
+    web:
+      skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
+    scheduled:
+      skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
+    integration:
+      enabled: false
+
+management:
+  security:
+    enabled: false
+
+security:
+  user:
+    name: admin
+    password: admin
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10 #线程池核心数,命令执行的最大并发量，默认值 10
+      maxQueueSize: -1 #默认值 -1
+  command:
+    default:
+      fallback:
+        enabled: true #是否启用fallback，默认为true
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 100 #fallback最大并发数目
+      circuitBreaker:
+        requestVolumeThreshold: 20 #当在配置时间窗口内达到此数量的失败后，进行短路。默认20个）
+        sleepWindowInMilliseconds: 5 #短路多久以后开始尝试是否恢复，默认5s）
+        errorThresholdPercentage: 50% #出错百分比阈值，当达到此阈值后，开始短路。默认50%）
+      execution:
+        isolation:
+          strategy: THREAD #执行线程池隔离策略,默认
+          thread:
+            timeoutInMilliseconds: 5000 #调整全局超时错误时间，默认1000
+#        isolation:
+#          strategy: SEMAPHONE #执行信号量隔离策略
+#          semaphore:
+#            maxConcurrentRequests: 100 #当隔离策略使用信号量时，该属性用来配置信号量的大小，当最大并发请求数达到该设置值，后续的请求将会被拒绝
+#      requestLog:
+#        enabled: true #设置HystrixCommand执行和事件是否打印到HystrixRequestLog中
+
+#mybatis
+mybatis:
+  type-aliases-package: com.example.common.model
+  mapper-locations: classpath:mapper/*.xml
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+#页码<=0 查询第一页，页码>=总页数查询最后一页
+  reasonable: true
+#支持通过 Mapper 接口参数来传递分页参数
+  supportMethodsArguments: true
+#分页尺寸为0时查询所有纪录不再执行分页
+  page-size-zero: "true"
+
+#tk.mapper配置
+mapper:
+  mappers: com.example.clientone.core.Mapper
+  not-empty: true
+  identity: mysql
+
+#admin显示日志信息配置
+logging:
+  path: /Users/yangtianfeng/Downloads/
+
