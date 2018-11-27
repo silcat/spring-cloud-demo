@@ -1,5 +1,5 @@
 package com.example.clientone.service;
-import com.example.common.model.Bank;
+import com.example.common.model.clientone.Bank;
 import com.example.common.core.BaseService;
 
 /**

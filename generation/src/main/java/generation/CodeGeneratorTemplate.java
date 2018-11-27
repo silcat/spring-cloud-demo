@@ -56,7 +56,7 @@ public class CodeGeneratorTemplate {
         this.BASE_MODULE_PACKAGE = BASE_MODULE_PACKAGE;
        this. MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODULE_PROJECT_NAME;//项目在硬盘上的基础路径
        this. MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODEL_PROJECT_NAME;//项目在硬盘上的基础路径
-       this. MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model";//Model所在包
+       this. MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model."+moduleNameConvertMapping(MODULE_PROJECT_NAME);//Model所在包
        this. MAPPER_PACKAGE = BASE_MODULE_PACKAGE  + ".mapper";//Mapper所在包
        this. SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包
        this. SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
@@ -167,6 +167,7 @@ public class CodeGeneratorTemplate {
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
             data.put("baseModelPackage", BASE_COMMON_PACKAGE);
             data.put("baseModulePackage", BASE_MODULE_PACKAGE);
+            data.put("baseModuleName", moduleNameConvertMapping(MODULE_PROJECT_NAME));
             File file = new File(MODULE_PROJECT_PATH+ JAVA_PATH + PACKAGE_PATH_SERVICE + modelNameUpperCamel + "Service.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
@@ -253,6 +254,9 @@ public class CodeGeneratorTemplate {
     private  String tableNameConvertMappingPath(String tableName) {
         tableName = tableName.toLowerCase();//兼容使用大写的表名
         return "/" + (tableName.contains("_") ? tableName.replaceAll("_", "/") : tableName);
+    }
+    private  String moduleNameConvertMapping(String moduleName) {
+        return moduleName.contains("-")? moduleName.replaceAll("-", "") : moduleName;
     }
 
     private  String packageConvertPath(String packageName) {

@@ -21,5 +21,6 @@ public class CodeGenerator {
                 .JDBC_URL("jdbc:mysql://172.16.1.71:3306/rrd_server?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai")
                 .build();
         build.genService(tableNames);
+        build.genModelAndMapper(tableNames);
     }
 }
