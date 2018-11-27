@@ -1,6 +1,7 @@
 package generation;
 
 import freemarker.template.TemplateExceptionHandler;
+import lombok.Builder;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
@@ -17,52 +18,69 @@ import java.util.*;
  */
 public class CodeGeneratorTemplate {
     //JDBC配置，请修改为你项目的实际配置
-    public static  String  JDBC_URL = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai";
-    public static  String  JDBC_USERNAME = "root";
-    public static  String  JDBC_PASSWORD = "root";
-    private static  String  JDBC_DIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+    private   String  JDBC_URL;
+    private   String  JDBC_USERNAME ;
+    private   String  JDBC_PASSWORD ;
+    private   String  MODULE_PROJECT_NAME ;//项目在硬盘上的基础路径
+    private   String  MODEL_PROJECT_NAME ;//项目在硬盘上的基础路径
+    private   String  BASE_COMMON_PACKAGE ;//项目基础包名称
+    private   String  BASE_MODULE_PACKAGE ;//项目基础包名称
+    private   String  JDBC_DIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+    private   String  MODULE_PROJECT_PATH ;//项目在硬盘上的基础路径
+    private   String  MODEL_PROJECT_PATH ;//项目在硬盘上的基础路径
+    private   String  JAVA_PATH = "/src/main/java"; //java文件路径
+    private   String  RESOURCES_PATH = "/src/main/resources";//资源文件路径
+    private   String  TEMPLATE_FILE_PATH = System.getProperty("user.dir")+"\\"+"generation"+ "/src/main/resources/template";//模板位置
+    private   String  MODEL_PACKAGE ;//Model所在包
+    private   String  MAPPER_PACKAGE;//Mapper所在包
+    private   String  SERVICE_PACKAGE;//Service所在包
+    private   String  SERVICE_IMPL_PACKAGE;//ServiceImpl所在包
+    private   String  CONTROLLER_PACKAGE ;//Controller所在包
+    private   String  MAPPER_INTERFACE_REFERENCE ;//Mapper插件基础接口的完全限定名
 
-    private static  String PROJECT_PATH = System.getProperty("user.dir")+"\\"+"generation";//项目在硬盘上的基础路径
-    public static  String  MODULE_PROJECT_NAME = "generation";//项目在硬盘上的基础路径
-    public static  String  MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODULE_PROJECT_NAME;//项目在硬盘上的基础路径
-    public static  String  MODEL_PROJECT_NAME = "generation";//项目在硬盘上的基础路径
-    public static  String  MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODEL_PROJECT_NAME;//项目在硬盘上的基础路径
-    private static  String  TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/main/resources/template";//模板位置
+    private   String  PACKAGE_PATH_SERVICE;//生成的Service存放路径
+    private   String  PACKAGE_PATH_SERVICE_IMPL;//生成的Service实现存放路径
+    private   String  PACKAGE_PATH_CONTROLLER ;//生成的Controller存放路径
 
-    private static  String  JAVA_PATH = "/src/main/java"; //java文件路径
-    private static  String  RESOURCES_PATH = "/src/main/resources";//资源文件路径
+    private   String  AUTHOR = "CodeGenerator";//@author
+    private   String  DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
-    public static  String  BASE_COMMON_PACKAGE = "com.example.common";//项目基础包名称
-    public static  String  BASE_MODULE_PACKAGE = "com.example.clientone";//项目基础包名称
-    private static  String  MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model";//Model所在包
-    private static  String  MAPPER_PACKAGE = BASE_MODULE_PACKAGE  + ".mapper";//Mapper所在包
-    private static  String  SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包
-    private static  String  SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
-    private static  String  CONTROLLER_PACKAGE = BASE_MODULE_PACKAGE  + ".web";//Controller所在包
-    private static  String  MAPPER_INTERFACE_REFERENCE = BASE_MODULE_PACKAGE+ ".core.Mapper";//Mapper插件基础接口的完全限定名
+    @Builder
+    public CodeGeneratorTemplate(String JDBC_URL, String JDBC_USERNAME, String JDBC_PASSWORD, String MODULE_PROJECT_NAME, String MODEL_PROJECT_NAME, String BASE_COMMON_PACKAGE, String BASE_MODULE_PACKAGE) {
+        this.JDBC_URL = JDBC_URL;
+        this.JDBC_USERNAME = JDBC_USERNAME;
+        this.JDBC_PASSWORD = JDBC_PASSWORD;
+        this.MODULE_PROJECT_NAME = MODULE_PROJECT_NAME;
+        this.MODEL_PROJECT_NAME = MODEL_PROJECT_NAME;
+        this.BASE_COMMON_PACKAGE = BASE_COMMON_PACKAGE;
+        this.BASE_MODULE_PACKAGE = BASE_MODULE_PACKAGE;
+       this. MODULE_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODULE_PROJECT_NAME;//项目在硬盘上的基础路径
+       this. MODEL_PROJECT_PATH = System.getProperty("user.dir")+"\\"+MODEL_PROJECT_NAME;//项目在硬盘上的基础路径
+       this. MODEL_PACKAGE = BASE_COMMON_PACKAGE + ".model";//Model所在包
+       this. MAPPER_PACKAGE = BASE_MODULE_PACKAGE  + ".mapper";//Mapper所在包
+       this. SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包
+       this. SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
+       this. CONTROLLER_PACKAGE = BASE_MODULE_PACKAGE  + ".web";//Controller所在包
+       this. MAPPER_INTERFACE_REFERENCE = BASE_MODULE_PACKAGE+ ".core.Mapper";//Mapper插件基础接口的完全限定名
+       this. PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
+       this. PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
+       this. PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径
+    }
 
-    private static  String  PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
-    private static  String  PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
-    private static  String  PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径
-
-    private static  String  AUTHOR = "CodeGenerator";//@author
-    private static  String  DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
-
-
-   public static void genModelAndMapper(String... tableNames) {
+    public void genModelAndMapper(String... tableNames) {
         Arrays.stream(tableNames)
                 .forEach(tableName ->{
                     genModelAndMapper(tableName);
                 });
     }
-    public static void genService(String... tableNames) {
+   public void genService(String... tableNames) {
         Arrays.stream(tableNames)
                 .forEach(tableName ->{
                     genService(tableName);
                 });
     }
 
-   public static void genAll(String... tableNames) {
+   private  void genAll(String... tableNames) {
         Arrays.stream(tableNames)
                 .forEach(tableName ->{
                     genModelAndMapper(tableName);
@@ -71,7 +89,7 @@ public class CodeGeneratorTemplate {
                 });
     }
 
-   private static void genModelAndMapper(String tableName) {
+   private  void genModelAndMapper(String tableName) {
         Context context = new Context(ModelType.FLAT);
         context.setId("Potato");
         context.setTargetRuntime("MyBatis3Simple");
@@ -137,7 +155,7 @@ public class CodeGeneratorTemplate {
         System.out.println(modelName + "Mapper.xml 生成成功");
     }
 
-   public static void genService(String tableName) {
+   private  void genService(String tableName) {
         try {
             freemarker.template.Configuration cfg = getConfiguration();
 
@@ -147,7 +165,8 @@ public class CodeGeneratorTemplate {
             String modelNameUpperCamel = tableNameConvertUpperCamel(tableName);
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
-            data.put("basePackage", BASE_COMMON_PACKAGE);
+            data.put("baseModelPackage", BASE_COMMON_PACKAGE);
+            data.put("baseModulePackage", BASE_MODULE_PACKAGE);
             File file = new File(MODULE_PROJECT_PATH+ JAVA_PATH + PACKAGE_PATH_SERVICE + modelNameUpperCamel + "Service.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
@@ -168,7 +187,7 @@ public class CodeGeneratorTemplate {
         }
     }
 
-   public static void genController(String tableName) {
+   private  void genController(String tableName) {
         try {
             freemarker.template.Configuration cfg = getConfiguration();
 
@@ -195,7 +214,7 @@ public class CodeGeneratorTemplate {
 
     }
 
-    private static freemarker.template.Configuration getConfiguration() throws IOException {
+    private  freemarker.template.Configuration getConfiguration() throws IOException {
         freemarker.template.Configuration cfg = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_23);
         cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_FILE_PATH));
         cfg.setDefaultEncoding("UTF-8");
@@ -203,7 +222,7 @@ public class CodeGeneratorTemplate {
         return cfg;
     }
 
-    private static String tableNameConvertLowerCamel(String tableName) {
+    private  String tableNameConvertLowerCamel(String tableName) {
         StringBuilder result = new StringBuilder();
         if (tableName != null && tableName.length() > 0) {
             tableName = tableName.toLowerCase();//兼容使用大写的表名
@@ -225,18 +244,18 @@ public class CodeGeneratorTemplate {
         return result.toString();
     }
 
-    private static String tableNameConvertUpperCamel(String tableName) {
+    private  String tableNameConvertUpperCamel(String tableName) {
         String camel = tableNameConvertLowerCamel(tableName);
         return camel.substring(0, 1).toUpperCase() + camel.substring(1);
 
     }
 
-    private static String tableNameConvertMappingPath(String tableName) {
+    private  String tableNameConvertMappingPath(String tableName) {
         tableName = tableName.toLowerCase();//兼容使用大写的表名
         return "/" + (tableName.contains("_") ? tableName.replaceAll("_", "/") : tableName);
     }
 
-    private static String packageConvertPath(String packageName) {
+    private  String packageConvertPath(String packageName) {
         return String.format("/%s/", packageName.contains(".") ? packageName.replaceAll("\\.", "/") : packageName);
     }
 }

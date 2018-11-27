@@ -1,9 +1,9 @@
-package ${basePackage}.service.impl;
+package ${baseModulePackage}.service.impl;
 
-import ${basePackage}.orm.mapper.${modelNameUpperCamel}Mapper;
-import ${basePackage}.orm.model.${modelNameUpperCamel};
-import ${basePackage}.service.${modelNameUpperCamel}Service;
-import ${basePackage}.core.AbstractService;
+import ${baseModulePackage}.mapper.${modelNameUpperCamel}Mapper;
+import ${baseModelPackage}.model.${modelNameUpperCamel};
+import ${baseModulePackage}.service.${modelNameUpperCamel}Service;
+import ${baseModelPackage}.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
