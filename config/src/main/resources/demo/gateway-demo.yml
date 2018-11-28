@@ -16,11 +16,6 @@ zuul:
 
 spring:
   profiles: demo
-  # 重试机制
-  cloud:
-    loadbalancer:
-      retry:
-       enabled: true
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -30,23 +25,6 @@ spring:
 ribbon:
   ReadTimeout: 4000
   SocketTimeout: 4000
-    # 对所有操作请求都进行重试
-    OkToRetryOnAllOperations : true
-    # 切换实例的重试次数
-    MaxAutoRetriesNextServer : 2
-    # 对当前实例的重试次数
-    MaxAutoRetries : 1
-
-#service-b:
-#  ribbon:
-#    # 对所有操作请求都进行重试
-#    OkToRetryOnAllOperations : true
-#    # 切换实例的重试次数
-#    MaxAutoRetriesNextServer : 2
-#    # 对当前实例的重试次数
-#    MaxAutoRetries : 1
-#    ReadTimeout: 4000
-#    SocketTimeout: 4000
 
 eureka:
   client:
