@@ -61,7 +61,7 @@ public class CodeGeneratorTemplate {
        this. SERVICE_PACKAGE = BASE_MODULE_PACKAGE  + ".service";//Service所在包
        this. SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
        this. CONTROLLER_PACKAGE = BASE_MODULE_PACKAGE  + ".web";//Controller所在包
-       this. MAPPER_INTERFACE_REFERENCE = BASE_MODULE_PACKAGE+ ".core.Mapper";//Mapper插件基础接口的完全限定名
+       this. MAPPER_INTERFACE_REFERENCE = BASE_COMMON_PACKAGE+ ".core.Mapper";//Mapper插件基础接口的完全限定名
        this. PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
        this. PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
        this. PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径

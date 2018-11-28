@@ -1,10 +1,13 @@
 package com.example.clientone.controller;
 
+import com.example.clientone.configuration.DynamicConfiguration;
+import com.example.clientone.mapper.BankMapper;
 import com.example.common.bo.TestRequestBo;
-import com.example.common.model.Bank;
+
 import com.example.clientone.feginService.ServiceBFeginService;
 import com.example.clientone.feginService.ServiceBNoFallbackFeginService;
 import com.example.clientone.service.BankService;
+import com.example.common.model.clientone.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -13,19 +16,20 @@ import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RefreshScope
-public class Test {
-@Autowired
-private Tracer tracer;
-    @Value("${test}")
-    private String test;
+public class TestController {
 
+    @Autowired
+    private DynamicConfiguration dynamicConfiguration;
     @Autowired
     private ServiceBFeginService serviceBFeginService;
     @Autowired
     private BankService bankService;
-
+    @Autowired
+    private BankMapper bankMapper;
     @Autowired
     private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
 
@@ -41,32 +45,15 @@ private Tracer tracer;
     }
 
     @PostMapping("/config")
-    public Bank config(){
-        return bankService.test();
+    public String config(){
+        return dynamicConfiguration.getTest();
     }
 
-    @PostMapping("/retry")
-    public String retry(){
-        String fallback="";
-        try {
-            fallback = serviceBNoFallbackFeginService.fallback();
-        }catch (Exception e){
-            Span newSpan = this.tracer.createSpan("errSpan");
-            try {
-                // ...
-                // You can tag a span
-                this.tracer.addTag("msg",e.toString() );
-                // You can log an event on a span
-                newSpan.logEvent("errSpan");
-            } finally {
-                this.tracer.close(newSpan);
-            }
-            throw e;
-        }
-        return fallback;
+    @PostMapping("/tk")
+    public Bank tk(){
+        List<Bank> banks = bankMapper.selectAll();
+        Bank bank = bankMapper.selectByPrimaryKey(1);
+        return null;
     }
-
-
-
 
 }

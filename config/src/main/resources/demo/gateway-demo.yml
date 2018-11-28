@@ -6,10 +6,10 @@ zuul:
   routes:
     service-a:
       path: /sa/**
-      serviceId: service-a
+      serviceId: client-one
     service-b:
       path: /sb/**
-      serviceId: service-b
+      serviceId: client-two
   host:
     connect-timeout-millis: 25000
     socket-timeout-millis: 5000
