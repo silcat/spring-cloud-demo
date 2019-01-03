@@ -1,12 +1,4 @@
 spring:
-  #admin客户端配置
-  boot:
-    admin:
-      url: http://localhost:8001 #admin服务器地址
-      client:
-        metadata:
-          user.name: admin       #actuor端点请求加密
-          user.password: admin
   #zipkin客户端配置
   zipkin:
     enabled: true
@@ -15,6 +7,8 @@ spring:
     rabbitmq:
       queue: monitor.zipkin #默认值为zipkin
   sleuth:
+    sampler:
+      percentage: 0.001
     web:
       skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
     scheduled:

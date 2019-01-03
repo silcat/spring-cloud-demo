@@ -1,3 +1,8 @@
+
+eureka:
+  client:
+    enabled: false
+
 #基于eureka服务发现方式
 spring:
   boot:
@@ -5,7 +10,16 @@ spring:
       contextPath: /monitor
       turbine:
         clusters: "default"
-        url: http://localhost:8989/turbine.stream
+        url: http://rrdloan-monitor.rrdbg.com/turbine/turbine.stream
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            service-one:
+            - uri: http://127.0.0.1:9006
+              metadata:
+                management.context-path: /
 
 management:
   security:
@@ -17,23 +31,3 @@ security:
     password: admin
   basic:
     enabled: true
-
-#未将monitor注册到服务中心服务发现方式
-
-#  cloud:
-#    discovery:
-#      client:
-#        simple:
-#          instances:
-#            monitor:
-#            - uri: http://localhost:8001
-#              metadata:
-#                management.context-path: /
-#            turbin:
-#            - uri: http://localhost:8989
-#              metadata:
-#                management.context-path: /
-#            service-a:
-#            - uri: http://localhost:9006
-#              metadata:
-#                management.context-path: /
