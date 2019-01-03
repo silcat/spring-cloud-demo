@@ -1,0 +1,41 @@
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+spring:
+  boot:
+    admin:
+      #设置admin 请求前缀
+      contextPath: /admin
+      #服务发现配置
+      discovery:
+        ignored-services: monitor,registry
+      #设置admin ui 模块
+      routes:
+        endpoints: "env,metrics,trace,dump,jolokia,info,loggers"
+      #设置admin turbine
+      turbine:
+        clusters: "default,finance,data-api,loanflow,account,faceid,sms,message-center,public-debt"
+        url: http://rrdloan-monitor.rrdbg.com/turbine/turbine.stream
+      client:
+        metadata:
+          user.name: admin       #monitor请求admin携带账户密码
+          user.password: admin
+
+
+management:
+  security:
+    enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
+
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: true
