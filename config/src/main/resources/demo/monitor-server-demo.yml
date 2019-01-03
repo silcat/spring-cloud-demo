@@ -1,5 +1,5 @@
 server:
-  port: 8011 #监控面板页面端口
+  port: 8001 #监控面板页面端口
 spring:
   profiles: demo
 

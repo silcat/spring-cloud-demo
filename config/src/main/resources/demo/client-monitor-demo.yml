@@ -5,14 +5,14 @@ spring:
     sender:
       type: rabbit
     rabbitmq:
-      queue: monitor.zipkin #默认值为zipkin
+      queue: queue.zipkin #默认值为zipkin
   sleuth:
     sampler:
-      percentage: 0.001
+      percentage: 0.01 #(默认值为最低为1%)
     web:
       skip-pattern: /turbine.stream|/turbine.*|api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream
     scheduled:
-      skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
+      enabled: false
     integration:
       enabled: false
 

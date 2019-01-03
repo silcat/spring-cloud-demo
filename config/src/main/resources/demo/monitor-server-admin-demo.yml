@@ -10,7 +10,7 @@ spring:
       contextPath: /monitor
       turbine:
         clusters: "default"
-        url: http://rrdloan-monitor.rrdbg.com/turbine/turbine.stream
+        url: http://127.0.0.1:8001
   cloud:
     discovery:
       client:

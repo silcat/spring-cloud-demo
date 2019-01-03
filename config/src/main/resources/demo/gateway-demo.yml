@@ -1,6 +1,15 @@
 server:
   port: 4000
 
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
 zuul:
   ignoredServices: '*'
   routes:
@@ -25,15 +34,6 @@ spring:
 ribbon:
   ReadTimeout: 4000
   SocketTimeout: 4000
-
-eureka:
-  client:
-    registry-fetch-interval-seconds: 5
-    serviceUrl:
-      defaultZone: http://registry:8761/eureka/
-  instance:
-      lease-renewal-interval-in-seconds: 5
-      lease-expiration-duration-in-seconds: 10
 
 hystrix:
   command:

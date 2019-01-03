@@ -21,13 +21,12 @@ spring:
         endpoints: "env,metrics,trace,dump,jolokia,info,loggers"
       #设置admin turbine
       turbine:
-        clusters: "default,finance,data-api,loanflow,account,faceid,sms,message-center,public-debt"
-        url: http://rrdloan-monitor.rrdbg.com/turbine/turbine.stream
+        clusters: "default,client-one"
+        url: http://127.0.0.1:8001
       client:
         metadata:
           user.name: admin       #monitor请求admin携带账户密码
           user.password: admin
-
 
 management:
   security:
