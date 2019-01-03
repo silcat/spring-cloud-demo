@@ -41,7 +41,7 @@ public class TestController {
 
     @PostMapping("/fallback")
     public String fallback(){
-        return serviceBFeginService.fallback();
+        return "";
     }
 
     @PostMapping("/config")
