@@ -30,7 +30,7 @@ zipkin:
       addresses: 127.0.0.1:5672
       username: guest
       password: guest
-      queue: monitor.zipkin  #默认值为zipkin
+      queue: queue.zipkin #默认值为zipkin
       concurrency: 1
   storage:
     type: mysql
