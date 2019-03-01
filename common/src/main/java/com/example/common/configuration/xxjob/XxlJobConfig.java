@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
  */
 @Slf4j
 @Configuration
-@ConditionalOnProperty(value = "xxl.job.admin.address")
+@ConditionalOnProperty(value = "xxl.job.admin.address",matchIfMissing = true)
 @EnableConfigurationProperties(XxlJobProperties.class)
 public class XxlJobConfig {
 

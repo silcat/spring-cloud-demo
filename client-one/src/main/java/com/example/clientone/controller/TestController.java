@@ -35,7 +35,7 @@ public class TestController {
 
     @PostMapping("/fallback")
     public String fallback(){
-        return "";
+        return "test";
     }
 
 

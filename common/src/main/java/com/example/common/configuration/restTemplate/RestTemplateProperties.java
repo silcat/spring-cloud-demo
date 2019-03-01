@@ -2,12 +2,14 @@ package com.example.common.configuration.restTemplate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "rest-template")
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class RestTemplateProperties {
@@ -22,7 +24,7 @@ public class RestTemplateProperties {
     private int connectionRequestTimeout = 1000;
 
     // 连接池
-    private int maxTotal = 0 ;
+    private int maxTotal = 500 ;
 
     //单个主机的最大连接数
     private int maxConnectPerRoute = 200;
