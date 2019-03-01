@@ -1,4 +1,4 @@
-package com.example.common.model.clientone;
+package com.example.common.model;
 
 import javax.persistence.*;
 

@@ -1,18 +1,14 @@
 package com.example.clientone.controller;
 
-import com.example.clientone.configuration.DynamicConfiguration;
 import com.example.clientone.mapper.BankMapper;
-import com.example.common.bo.TestRequestBo;
 
 import com.example.clientone.feginService.ServiceBFeginService;
 import com.example.clientone.feginService.ServiceBNoFallbackFeginService;
 import com.example.clientone.service.BankService;
-import com.example.common.model.clientone.Bank;
+import com.example.common.model.Bank;
+import com.example.common.model.clientone.query.TestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.cloud.sleuth.Span;
-import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +19,6 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private DynamicConfiguration dynamicConfiguration;
-    @Autowired
     private ServiceBFeginService serviceBFeginService;
     @Autowired
     private BankService bankService;
@@ -34,7 +28,7 @@ public class TestController {
     private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
 
     @PostMapping("/rpc")
-    public String rpc(TestRequestBo testRequestBo){
+    public String rpc(TestQuery testRequestBo){
         String rpc = serviceBFeginService.rpc(testRequestBo);
         return rpc;
     }
@@ -44,10 +38,6 @@ public class TestController {
         return "";
     }
 
-    @PostMapping("/config")
-    public String config(){
-        return dynamicConfiguration.getTest();
-    }
 
     @PostMapping("/tk")
     public Bank tk(){

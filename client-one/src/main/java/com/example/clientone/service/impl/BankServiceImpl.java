@@ -1,7 +1,7 @@
 package com.example.clientone.service.impl;
 
 import com.example.clientone.mapper.BankMapper;
-import com.example.common.model.clientone.Bank;
+import com.example.common.model.Bank;
 import com.example.clientone.service.BankService;
 import com.example.common.core.AbstractService;
 import org.springframework.stereotype.Service;

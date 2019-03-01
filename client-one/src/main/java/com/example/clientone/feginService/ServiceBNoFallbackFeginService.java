@@ -1,6 +1,6 @@
 package com.example.clientone.feginService;
 
-import com.example.common.bo.TestRequestBo;
+import com.example.common.model.clientone.query.TestQuery;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface ServiceBNoFallbackFeginService {
 
     @PostMapping(value ="/rpc")
-    String rpc(TestRequestBo testRequestBo);
+    String rpc(TestQuery testRequestBo);
 
     @GetMapping(value ="/fallback")
     String fallback();

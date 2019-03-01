@@ -1,6 +1,7 @@
 package com.example.clientone.feginService;
 
-import com.example.common.bo.TestRequestBo;
+
+import com.example.common.model.clientone.query.TestQuery;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +11,7 @@ public class ServiceBFeginServiceImpl implements ServiceBFeginService {
 
     @Override
     @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
-    public String rpc(TestRequestBo testRequestBo) {
+    public String rpc(TestQuery testRequestBo) {
         return "rpc fallback";
     }
 

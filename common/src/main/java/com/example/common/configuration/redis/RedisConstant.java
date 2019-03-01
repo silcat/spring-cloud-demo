@@ -1,10 +1,13 @@
-package com.example.common.redis;
+package com.example.common.configuration.redis;
 
+/**
+ * Created by yff
+ */
 public class RedisConstant {
+    public static final String UNLOCK_LUA;
     public static final String LOCK_SUCCESS = "OK";
     public static final String SET_IF_NOT_EXIST = "NX";
     public static final String SET_WITH_EXPIRE_TIME = "PX";
-    public static final String UNLOCK_LUA;
     static {
         StringBuilder buffer = new StringBuilder();
         buffer.append("if redis.call(\"get\",KEYS[1]) == ARGV[1] ");
@@ -15,4 +18,5 @@ public class RedisConstant {
         buffer.append("end ");
         UNLOCK_LUA = buffer.toString();
     }
+
 }
