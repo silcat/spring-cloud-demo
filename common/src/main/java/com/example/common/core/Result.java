@@ -7,8 +7,6 @@ import lombok.Setter;
 /**
  * 统一API响应结果封装
  */
-@Getter
-@Setter
 @Builder
 public class Result<T> {
 
@@ -49,15 +47,35 @@ public class Result<T> {
         this.msg = msg;
     }
 
-    public Result(T data, ResultCode status) {
-        this(status);
-        this.data = data;
-    }
-
-
     public Result(T data, int code, String msg) {
         this(code, msg);
         this.data = data;
     }
 
+    public Result setCode(ResultCode resultCode) {
+        this.code = resultCode.code;
+        return this;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public Result setMsg(String message) {
+        this.msg = message;
+        return this;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public Result setData(T data) {
+        this.data = data;
+        return this;
+    }
 }

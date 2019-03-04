@@ -40,6 +40,9 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * mvc通用配置：json序列化/统一异常处理
+ */
 @Configuration
 @Slf4j
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
@@ -77,12 +80,9 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
             Result result = parseException(e);
             String message;
             if (o instanceof HandlerMethod) {
-                HandlerMethod handlerMethod = (HandlerMethod) o;
-                message = String.format("接口 [%s] 出现异常，方法：%s.%s，异常摘要：%s",
+                message = String.format("接口 [%s] 异常，异常信息：%s",
                         request.getRequestURI(),
-                        handlerMethod.getBean().getClass().getName(),
-                        handlerMethod.getMethod().getName(),
-                        e.getMessage());
+                        result.getMsg());
             } else {
                 message = e.getMessage();
             }
@@ -102,41 +102,43 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         Result result = new Result();
         //业务失败的异常
         if (e instanceof DemoException) {
-            result = result.builder()
+            result = Result.builder()
                     .code(((DemoException) e).getErrorCode())
                     .msg(((DemoException) e).getErrorMsg())
                     .build();
-            //URL请求错误异常
+        //URL请求错误异常
         } else if (e instanceof NoHandlerFoundException) {
-            result = result.builder()
+            result = Result.builder()
                     .code(ResultCode.NO_FUND.code)
                     .msg(ResultCode.NO_FUND.msg)
                     .build();
-            //参数校验错误异常
+        //参数校验错误异常
         } else if (e instanceof MethodArgumentNotValidException) {
-            result = result.builder()
+            result = Result.builder()
                     .code(ResultCode.PARAM_VALUE_ERROR.code)
                     .msg(e.getMessage())
                     .build();
         } else if (e instanceof ConstraintViolationException) {
-            result = result.builder()
+            result = Result.builder()
                     .code(ResultCode.PARAM_VALUE_ERROR.code)
                     .msg(e.getMessage())
                     .build();
         } else if (e instanceof BindException) {
-            result = result.builder()
+            String fieldName = ((BindException) e).getFieldErrors().get(0).getField();
+            String defaultMessage  = ((BindException) e).getFieldErrors().get(0).getDefaultMessage();
+            result = Result.builder()
                     .code(ResultCode.PARAM_VALUE_ERROR.code)
-                    .msg(e.getMessage())
+                    .msg(fieldName+defaultMessage)
                     .build();
-            //系统内部异常
+        //系统内部异常
         } else if (e instanceof ServletException) {
-            result = result.builder()
+            result = Result.builder()
                     .code(ResultCode.SERVER_UNKONW_ERROR.code)
                     .msg(ResultCode.SERVER_UNKONW_ERROR.msg)
                     .build();
-            //其他异常
+        //其他异常
         } else {
-            result = result.builder()
+            result = Result.builder()
                     .code(ResultCode.FAILED.code)
                     .msg(ResultCode.FAILED.msg)
                     .build();
@@ -173,8 +175,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-                String responseBody = getResponseBody(response);
-                log.warn(responseBody);
+
             }
 
             @Override
@@ -205,21 +206,4 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         return sb.toString();
     }
 
-    private String getResponseBody(HttpServletResponse response) {
-        ContentCachingResponseWrapper wrapperResponse = new ContentCachingResponseWrapper(response);
-        ContentCachingResponseWrapper wrapper = WebUtils.getNativeResponse(wrapperResponse, ContentCachingResponseWrapper.class);
-        if (wrapper != null) {
-            byte[] buf = wrapper.getContentAsByteArray();
-            if (buf.length > 0) {
-                String payload;
-                try {
-                    payload = new String(buf, 0, buf.length, wrapper.getCharacterEncoding());
-                } catch (UnsupportedEncodingException e) {
-                    payload = "[unknown]";
-                }
-                return payload;
-            }
-        }
-        return "";
-    }
 }
