@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 
 public class HttpUtils {
-    /**
-     *
-     /**
+  /**
      * 获取response值
      * @param response
      * @return
@@ -31,4 +29,6 @@ public class HttpUtils {
         }
         return "";
     }
+
+
 }
