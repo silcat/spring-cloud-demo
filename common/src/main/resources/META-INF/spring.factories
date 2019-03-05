@@ -2,5 +2,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.example.common.configuration.monitor.ZipkinConfig,\
 com.example.common.configuration.mvc.WebMvcConfigurer,\
 com.example.common.configuration.redis.DemoRedisAutoConfiguration,\
-com.example.common.configuration.restTemplate.RestTemplateAutoConfiguration,\
-com.example.common.configuration.mvc.CustomerWebMvcConfigurationSupport
+com.example.common.configuration.resttemplate.RestTemplateAutoConfiguration,\
+com.example.common.configuration.mvc.CustomerWebMvcSupportConfiguration

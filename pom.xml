@@ -18,6 +18,7 @@
         <module>client-two1</module>
         <module>client-two2</module>
         <module>monitor</module>
+        <module>xxl-job-admin</module>
     </modules>
 
     <parent>

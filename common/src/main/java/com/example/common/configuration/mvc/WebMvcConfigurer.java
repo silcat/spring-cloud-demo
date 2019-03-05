@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * mvc通用配置：json序列化/统一异常处理
+ * mvc通用配置：json序列化/统一异常处理/拦截器
  */
 @Configuration
 @Slf4j
@@ -58,16 +58,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        List<HandlerInterceptor > handlerInterceptors  = interceptorsList();
-        handlerInterceptors.add(new RequestLogInterceptor());
-        handlerInterceptors.stream()
-                .forEach((interceptors)->{
-                    registry.addInterceptor(interceptors);
-                });
-    }
-
-    public List<HandlerInterceptor > interceptorsList(){
-        return Lists.newArrayList();
+        registry.addInterceptor(new RequestLogInterceptor());
     }
 
 }
