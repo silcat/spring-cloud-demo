@@ -20,8 +20,17 @@ spring:
 logging:
   path: /Users/yangtianfeng/Downloads/
 
+#保护actuator接口
 management:
   security:
-    enabled: false
+    enabled: true
+  context-path: /monitor
+
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled : true
 
 
