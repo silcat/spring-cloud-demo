@@ -16,6 +16,8 @@ spring:
       #服务发现配置
       discovery:
         ignored-services: monitor,registry
+        converter:
+          management-context-path: monitor
       #设置admin ui 模块
       routes:
         endpoints: "env,metrics,trace,dump,jolokia,info,loggers"
@@ -30,7 +32,8 @@ spring:
 
 management:
   security:
-    enabled: false #敏感端口无权访问，设置false则都可访问（acturcor）
+    enabled: true
+  context-path: /monitor
 
 security:
   user:

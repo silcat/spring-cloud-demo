@@ -12,7 +12,3 @@ spring:
       password: 6mS9WQ2M
       username: user
       profile: @configProfile@
-management:
-  security:
-    enabled: true
-  context-path: /monitor

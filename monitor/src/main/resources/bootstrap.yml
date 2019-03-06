@@ -10,6 +10,6 @@ spring:
       password: 6mS9WQ2M
       username: user
       profile: @configProfile@
-      name: monitor-server-admin,monitor-server,monitor-server-zipkin
+      name: monitor-server-admin-eureka,monitor-server,monitor-server-zipkin
 
 
