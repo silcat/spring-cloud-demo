@@ -32,7 +32,9 @@ management:
   security:
     enabled: true
   context-path: /monitor
-
+endpoints:
+  health:
+    sensitive: true
 #请求参数校验
 security:
   user:
