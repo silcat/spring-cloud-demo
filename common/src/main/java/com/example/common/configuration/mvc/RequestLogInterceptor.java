@@ -1,6 +1,7 @@
 package com.example.common.configuration.mvc;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,8 +15,21 @@ import java.util.Optional;
  */
 @Slf4j
 public class RequestLogInterceptor implements HandlerInterceptor {
+
+    private ManagementServerProperties managementServerProperties;
+
+    public RequestLogInterceptor(ManagementServerProperties managementServerProperties) {
+        this.managementServerProperties = managementServerProperties;
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String requestURI = request.getRequestURI();
+
+        //actuator请求不打印日志
+        if (requestURI.startsWith(managementServerProperties.getContextPath())){
+            return true;
+        }
         StringBuffer requestLog = new StringBuffer();
         requestLog.append("request:")
                 .append(request.getRequestURI())

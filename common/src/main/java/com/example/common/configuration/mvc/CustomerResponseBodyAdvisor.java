@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -20,6 +21,13 @@ import java.util.Optional;
  */
 @Slf4j
 public class CustomerResponseBodyAdvisor implements ResponseBodyAdvice<Object> {
+
+    private ManagementServerProperties managementServerProperties;
+
+    public CustomerResponseBodyAdvisor(ManagementServerProperties managementServerProperties) {
+        this.managementServerProperties = managementServerProperties;
+    }
+
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
@@ -27,8 +35,12 @@ public class CustomerResponseBodyAdvisor implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        // 响应值转JSON串输出到日志系统
         HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
+        String requestURI = servletRequest.getRequestURI();
+        //actuator请求不打印日志
+        if (requestURI.startsWith(managementServerProperties.getContextPath())){
+            return body;
+        }
         Enumeration<String> params = servletRequest.getParameterNames();
         StringBuffer requestParams = new StringBuffer();
         requestParams.append("{");

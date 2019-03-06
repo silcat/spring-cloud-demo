@@ -27,22 +27,23 @@ spring:
 logging:
   path: /Users/yangtianfeng/Downloads/
 
-#保护actuator接口
+#保护actuator接口安全校验
 management:
   security:
     enabled: true
-  context-path: /monitor
+  context-path: /actuator
+
 endpoints:
   health:
     sensitive: true
-#请求参数校验
+
 security:
   user:
     name: admin
     password: admin
   basic:
     enabled: true
-    path: /monotor/**
+    path: /actuator/**
   enable-csrf: false
 
 

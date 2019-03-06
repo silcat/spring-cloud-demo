@@ -5,6 +5,9 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,7 +24,11 @@ import java.util.List;
  */
 @Configuration
 @Slf4j
-public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
+@EnableConfigurationProperties(ManagementServerProperties.class)
+public class WebMvcConfigureration extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    private ManagementServerProperties managementServerProperties;
 
     /**
      * 使用阿里 FastJson 作为JSON MessageConverter
@@ -58,7 +65,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new RequestLogInterceptor());
+        registry.addInterceptor(new RequestLogInterceptor(managementServerProperties));
     }
 
 }

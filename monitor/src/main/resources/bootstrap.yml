@@ -13,3 +13,4 @@ spring:
       name: monitor-server-admin-eureka,monitor-server,monitor-server-zipkin
 
 
+

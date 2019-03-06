@@ -17,7 +17,7 @@ spring:
       discovery:
         ignored-services: monitor,registry
         converter:
-          management-context-path: monitor
+          management-context-path: actuator
       #设置admin ui 模块
       routes:
         endpoints: "env,metrics,trace,dump,jolokia,info,loggers"
@@ -30,10 +30,15 @@ spring:
           user.name: admin       #monitor请求admin携带账户密码
           user.password: admin
 
+#actuator接口安全校验
 management:
   security:
     enabled: true
-  context-path: /monitor
+  context-path: /actuator
+
+endpoints:
+  health:
+    sensitive: true
 
 security:
   user:
@@ -41,3 +46,5 @@ security:
     password: admin
   basic:
     enabled: true
+    path: /actuator/**
+  enable-csrf: false
