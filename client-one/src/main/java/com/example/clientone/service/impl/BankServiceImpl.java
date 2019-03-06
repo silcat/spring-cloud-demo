@@ -3,7 +3,7 @@ package com.example.clientone.service.impl;
 import com.example.clientone.mapper.BankMapper;
 import com.example.common.model.Bank;
 import com.example.clientone.service.BankService;
-import com.example.common.core.AbstractService;
+import com.example.democore.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

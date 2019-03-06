@@ -5,13 +5,14 @@ import com.example.clientone.mapper.BankMapper;
 import com.example.clientone.feginService.ServiceBFeginService;
 import com.example.clientone.feginService.ServiceBNoFallbackFeginService;
 import com.example.clientone.service.BankService;
-import com.example.common.core.Result;
-import com.example.common.core.ResultCode;
-import com.example.common.core.ResultGenerator;
 import com.example.common.model.Bank;
 import com.example.common.model.clientone.query.TestQuery;
 import com.example.common.model.clientone.valid.TestQueryValid;
-import com.example.common.model.exception.DemoException;
+
+import com.example.democore.core.Result;
+import com.example.democore.core.ResultCode;
+import com.example.democore.core.ResultGenerator;
+import com.example.democore.exception.DemoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;
