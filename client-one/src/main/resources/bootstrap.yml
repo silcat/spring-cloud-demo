@@ -12,3 +12,11 @@ spring:
       password: 6mS9WQ2M
       username: user
       profile: @configProfile@
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: true
+    path: /monotor/**
+  enable-csrf: true

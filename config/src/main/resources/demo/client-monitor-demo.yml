@@ -40,5 +40,7 @@ security:
     password: admin
   basic:
     enabled: true
+    path: /monotor/**
+  enable-csrf: false
 
 
