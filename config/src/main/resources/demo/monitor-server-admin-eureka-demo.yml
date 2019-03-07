@@ -46,5 +46,3 @@ security:
     password: admin
   basic:
     enabled: true
-    path: /actuator/**
-  enable-csrf: false

@@ -1,11 +1,5 @@
-#请求携带账户密码
+
 spring:
-  boot:
-    admin:
-      client:
-        metadata:
-          user.name: admin
-          user.password: admin
   #zipkin客户端配置
   zipkin:
     enabled: true
