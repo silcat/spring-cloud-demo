@@ -34,7 +34,7 @@ spring:
     sender:
       type: rabbit
     rabbitmq:
-      queue: rrdloan.queue.account.sleuth.zipkin #默认值为zipkin
+      queue: demo.queue.account.sleuth.zipkin #默认值为zipkin
   sleuth:
     enabled: true
     web:

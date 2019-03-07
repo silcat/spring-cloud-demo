@@ -112,7 +112,7 @@
         <profile>
             <id>pro</id>
             <properties>
-                <configUri>http://rrdloan-config.test.rrdbg.com</configUri>
+                <configUri>http://demo-config.test.rrdbg.com</configUri>
                 <configProfile>pro</configProfile>
             </properties>
         </profile>
