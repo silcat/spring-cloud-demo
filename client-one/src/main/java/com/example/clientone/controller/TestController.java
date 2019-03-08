@@ -8,11 +8,10 @@ import com.example.clientone.service.BankService;
 import com.example.common.model.Bank;
 import com.example.common.model.clientone.query.TestQuery;
 import com.example.common.model.clientone.valid.TestQueryValid;
-
-import com.example.democore.core.Result;
-import com.example.democore.core.ResultCode;
-import com.example.democore.core.ResultGenerator;
-import com.example.democore.exception.DemoException;
+import com.example.demobase.core.Result;
+import com.example.demobase.core.ResultCode;
+import com.example.demobase.core.ResultGenerator;
+import com.example.demobase.exception.DemoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;

@@ -48,6 +48,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>demo-base</artifactId>
+        </dependency>
 
     </dependencies>
     <profiles>

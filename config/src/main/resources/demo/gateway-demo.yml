@@ -6,7 +6,11 @@ eureka:
     registry-fetch-interval-seconds: 5
     serviceUrl:
       defaultZone: http://registry:8761/eureka/
+      #请求携带账户密码
   instance:
+    metadata-map:
+      user.name: admin
+      user.password: admin
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
 
