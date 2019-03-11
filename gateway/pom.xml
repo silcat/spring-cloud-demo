@@ -38,7 +38,7 @@
         <profile>
             <id>pro</id>
             <properties>
-                <configUri>http://demo-config.test.rrdbg.com</configUri>
+                <configUri>http://demo-config.test.demobg.com</configUri>
                 <configProfile>pro</configProfile>
             </properties>
         </profile>
