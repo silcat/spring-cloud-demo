@@ -18,10 +18,6 @@
             <groupId>com.example</groupId>
             <artifactId>demo-monitor-client-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
 
     </dependencies>
     <profiles>
