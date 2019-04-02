@@ -5,6 +5,7 @@ import com.example.clientone.feginService.ServiceBFeginService;
 import com.example.clientone.service.AccountService;
 import com.example.common.model.clientone.dto.AccountTbl;
 
+import com.example.common.model.clienttwo1.dto.StorageTbl;
 import com.example.demobase.core.Result;
 import com.example.demobase.core.ResultCode;
 
@@ -36,7 +37,10 @@ public class TestFescarController {
         accountTbl.setMoney(10);
         accountTbl.setUserId("1");
         accountTblService.save(accountTbl);
-        Result<String> echo = serviceBFeginService.echo(COMMODITY_CODE, ORDER_COUNT);
+        StorageTbl storageTbl = new StorageTbl();
+        storageTbl.setCommodityCode(COMMODITY_CODE);
+        storageTbl.setCount(ORDER_COUNT);
+        Result<String> echo = serviceBFeginService.echo(storageTbl);
         if (echo.getCode()!= ResultCode.SUCCESS.code) {
             throw new RuntimeException();
         }

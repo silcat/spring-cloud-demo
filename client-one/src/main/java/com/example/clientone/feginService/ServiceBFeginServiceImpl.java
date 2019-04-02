@@ -2,6 +2,7 @@ package com.example.clientone.feginService;
 
 
 import com.example.common.model.clientone.query.TestQuery;
+import com.example.common.model.clienttwo1.dto.StorageTbl;
 import com.example.demobase.core.Result;
 import com.example.demobase.core.ResultCode;
 import com.example.demobase.exception.DemoException;
@@ -26,7 +27,7 @@ public class ServiceBFeginServiceImpl implements ServiceBFeginService {
 
     @Override
     @HystrixCommand(groupKey = "service-b",commandKey = "default" ,threadPoolKey = "service-b")
-    public Result<String> echo(String a, int b) {
+    public Result<String> echo(StorageTbl storageTbl) {
         throw new DemoException(ResultCode.DB_ERROR);
     }
 }

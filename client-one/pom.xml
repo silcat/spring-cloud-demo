@@ -15,12 +15,18 @@
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--服务核心包-->
+        <!--fescar-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-fescar</artifactId>
             <version>2.1.0.BUILD-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!--服务核心包-->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>demo-cloud-client-starter</artifactId>

@@ -3,7 +3,6 @@ package com.example.clientone.controller;
 import com.example.clientone.mapper.BankMapper;
 
 import com.example.clientone.feginService.ServiceBFeginService;
-import com.example.clientone.feginService.ServiceBNoFallbackFeginService;
 import com.example.clientone.service.BankService;
 import com.example.common.model.Bank;
 import com.example.common.model.clientone.query.TestQuery;
@@ -31,8 +30,7 @@ public class TestController {
     private BankService bankService;
     @Autowired
     private BankMapper bankMapper;
-    @Autowired
-    private ServiceBNoFallbackFeginService serviceBNoFallbackFeginService;
+
 
     /**
      * 请求参数日志及参数校验测试
