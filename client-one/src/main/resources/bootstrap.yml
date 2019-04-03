@@ -1,4 +1,6 @@
-
+feign:
+  hystrix:
+    enabled: true
 spring:
   profiles:
     active: @configProfile@

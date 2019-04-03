@@ -7,5 +7,6 @@ import com.example.democore.configuration.mybatis.BaseService;
  * Created by CodeGenerator on 2019/03/28.
  */
 public interface StorageTblService extends BaseService<StorageTbl> {
+    void updateStore(StorageTbl storageTbl);
 
 }

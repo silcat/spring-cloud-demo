@@ -4,6 +4,7 @@ import com.example.clienttwo1.maaper.StorageTblMapper;
 import com.example.clienttwo1.service.StorageTblService;
 import com.example.common.model.clienttwo1.dto.StorageTbl;
 import com.example.democore.configuration.mybatis.AbstractService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,8 +14,14 @@ import javax.annotation.Resource;
  * Created by CodeGenerator on 2019/03/28.
  */
 @Service
+@Slf4j
 public class StorageTblServiceImpl extends AbstractService<StorageTbl> implements StorageTblService {
     @Resource
     private StorageTblMapper storageTblMapper;
 
+    @Override
+    public void updateStore(StorageTbl storageTbl) {
+        int i = storageTblMapper.updateByPrimaryKey(storageTbl);
+        log.warn(i+"");
+    }
 }

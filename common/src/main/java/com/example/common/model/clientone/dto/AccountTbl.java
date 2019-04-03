@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Table(name = "account_tbl")
 public class AccountTbl {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

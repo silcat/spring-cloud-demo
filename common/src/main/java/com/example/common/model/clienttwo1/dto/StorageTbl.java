@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Table(name = "storage_tbl")
 public class StorageTbl {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

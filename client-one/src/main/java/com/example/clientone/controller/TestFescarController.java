@@ -12,7 +12,9 @@ import com.example.demobase.core.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/tx")
@@ -32,18 +34,17 @@ public class TestFescarController {
 
     @GlobalTransactional(timeoutMills = 300000, name = "spring-cloud-demo-tx")
     @GetMapping(value = "/fescar/feign")
-    public String feign() {
-        AccountTbl accountTbl = new AccountTbl();
-        accountTbl.setMoney(10);
-        accountTbl.setUserId("1");
-        accountTblService.save(accountTbl);
+    @Transactional
+    public String feign(@RequestParam String uid) {
         StorageTbl storageTbl = new StorageTbl();
         storageTbl.setCommodityCode(COMMODITY_CODE);
         storageTbl.setCount(ORDER_COUNT);
+        storageTbl.setId(1);
         Result<String> echo = serviceBFeginService.echo(storageTbl);
-        if (echo.getCode()!= ResultCode.SUCCESS.code) {
-            throw new RuntimeException();
-        }
+        AccountTbl accountTbl = new AccountTbl();
+        accountTbl.setMoney(10);
+        accountTbl.setUserId(uid);
+        accountTblService.save(accountTbl);
         return SUCCESS;
 
     }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Primary
-@FeignClient(name ="service-b", fallback = ServiceBFeginServiceImpl.class )
+@FeignClient(name ="client-two", fallback = ServiceBFeginServiceImpl.class )
 public interface ServiceBFeginService {
 
     @PostMapping(value ="/rpc")
@@ -18,7 +18,7 @@ public interface ServiceBFeginService {
     @PostMapping(value ="/fallback")
     String fallback()
             ;
-    @PostMapping(value ="/echo")
+    @PostMapping(value ="/store/update",consumes = "application/json")
     Result<String> echo(StorageTbl storageTbl);
 
 }

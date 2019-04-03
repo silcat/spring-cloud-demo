@@ -1,10 +1,10 @@
 server:
-  port: 9006
+  port: 9007
 
 spring:
   profiles: demo
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/clienttwo?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: root
     driverClassName: com.mysql.cj.jdbc.Driver
