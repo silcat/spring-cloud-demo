@@ -4,11 +4,8 @@ import com.alibaba.fescar.spring.annotation.GlobalTransactional;
 import com.example.clientone.feginService.ServiceBFeginService;
 import com.example.clientone.service.AccountService;
 import com.example.common.model.clientone.dto.AccountTbl;
-
 import com.example.common.model.clienttwo1.dto.StorageTbl;
 import com.example.demobase.core.Result;
-import com.example.demobase.core.ResultCode;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 

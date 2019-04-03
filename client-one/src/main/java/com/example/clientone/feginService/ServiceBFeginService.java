@@ -6,10 +6,9 @@ import com.example.demobase.core.Result;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Primary
-@FeignClient(name ="client-two", fallback = ServiceBFeginServiceImpl.class )
+@FeignClient(name ="client-one", fallback = ServiceBFeginServiceImpl.class )
 public interface ServiceBFeginService {
 
     @PostMapping(value ="/rpc")

@@ -1,16 +1,16 @@
 package com.example.clientone;
 
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
-@EnableHystrix
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
+@EnableTransactionManagement
 @MapperScan(basePackages = "com.example.clientone.mapper")
 public class ClientOneApplication {
 
