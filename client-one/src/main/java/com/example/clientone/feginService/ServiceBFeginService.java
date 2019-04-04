@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Primary
-@FeignClient(name ="client-one", fallback = ServiceBFeginServiceImpl.class )
+@FeignClient(name ="client-two", fallback = ServiceBFeginServiceImpl.class )
 public interface ServiceBFeginService {
 
     @PostMapping(value ="/rpc")
