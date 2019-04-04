@@ -10,10 +10,11 @@ public class test extends GlobalTransactionScanner {
     }
     @Override
     protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
-        if (beanName.equals("com.example.clientone.controller.TestFescarController")){
-            return super.wrapIfNecessary(bean,beanName,cacheKey);
+        if (beanName.equals("org.springframework.cloud.netflix.hystrix.stream.HystrixStreamClient")){
+            return bean;
         }
-        return bean;
+
+        return super.wrapIfNecessary(bean,beanName,cacheKey);
     }
 
 }

@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
 import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -21,20 +22,21 @@ public class DatabaseConfiguration {
     @Value("${spring.application.name}")
     private String applicationId;
 
-    @Primary
+
     @Bean
     @ConfigurationProperties("spring.datasource")
     public DruidDataSource druidDataSource(){
         return DruidDataSourceBuilder.create().build();
     }
 
-    @Bean
+    @Primary
+    @Bean("dataSource")
     public DataSourceProxy dataSource(DruidDataSource druidDataSource) {
         return new DataSourceProxy(druidDataSource);
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(DataSourceProxy dataSourceProxy) {
+    public JdbcTemplate jdbcTemplate( DataSourceProxy dataSourceProxy) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSourceProxy);
         return jdbcTemplate;
 

@@ -27,11 +27,6 @@
         </dependency>
         <!--服务核心包-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-fescar</artifactId>
-            <version>2.1.0.BUILD-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>com.example</groupId>
             <artifactId>demo-cloud-client-starter</artifactId>
         </dependency>

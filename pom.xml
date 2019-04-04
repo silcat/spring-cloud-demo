@@ -116,7 +116,7 @@
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
+                <!--<updatePolicy>always</updatePolicy>-->
                 <checksumPolicy>fail</checksumPolicy>
             </snapshots>
         </repository>

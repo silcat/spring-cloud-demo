@@ -80,6 +80,7 @@ public class TestController {
     @PostMapping("/tk")
     public Result<Bank> tk(TestQuery testRequestBo){
         List<Bank> banks = bankMapper.selectAll();
+
         Bank bank = bankMapper.selectByPrimaryKey(1);
         return ResultGenerator.genSuccessResult(bank);
     }

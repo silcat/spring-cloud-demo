@@ -2,7 +2,10 @@ package com.example.clientone.controller;
 
 import com.alibaba.fescar.spring.annotation.GlobalTransactional;
 import com.example.clientone.feginService.ServiceBFeginService;
+import com.example.clientone.mapper.BankMapper;
 import com.example.clientone.service.AccountService;
+import com.example.clientone.service.BankService;
+import com.example.common.model.Bank;
 import com.example.common.model.clientone.dto.AccountTbl;
 import com.example.common.model.clienttwo1.dto.StorageTbl;
 import com.example.demobase.core.Result;
@@ -28,6 +31,8 @@ public class TestFescarController {
     private ServiceBFeginService serviceBFeginService;
     @Autowired
     private AccountService accountTblService;
+    @Autowired
+    private BankMapper bankService;
 
     @GlobalTransactional(timeoutMills = 300000, name = "spring-cloud-demo-tx")
     @GetMapping(value = "/fescar/feign")
@@ -38,6 +43,9 @@ public class TestFescarController {
         storageTbl.setCount(ORDER_COUNT);
         storageTbl.setId(1);
         Result<String> echo = serviceBFeginService.echo(storageTbl);
+        Bank bank1 = new Bank();
+        bank1.setName("ii");
+        bankService.insertSelective(bank1);
         AccountTbl accountTbl = new AccountTbl();
         accountTbl.setMoney(10);
         accountTbl.setUserId(uid);

@@ -6,7 +6,7 @@ package generation;
 public class CodeGenerator {
 
     public static void main(String[] args) {
-        genCode("bank");
+        genCode("account_tbl");
     }
 
     private static void genCode(String... tableNames) {
