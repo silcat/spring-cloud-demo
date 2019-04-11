@@ -10,8 +10,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
-@EnableTransactionManagement
-@MapperScan(basePackages = "com.example.clientone.mapper")
 public class ClientOneApplication {
 
     public static void main(String[] args) {

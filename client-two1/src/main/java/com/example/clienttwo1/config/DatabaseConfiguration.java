@@ -29,13 +29,13 @@ public class DatabaseConfiguration {
     }
 
     @Primary
-    @Bean
+    @Bean("dataSource")
     public DataSourceProxy dataSource(DruidDataSource druidDataSource) {
         return new DataSourceProxy(druidDataSource);
     }
 
     @Primary
-    @Bean("dataSource")
+    @Bean
     public JdbcTemplate jdbcTemplate(DataSourceProxy dataSourceProxy) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSourceProxy);
         return jdbcTemplate;

@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Table(name = "account_tbl")
 public class AccountTbl {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

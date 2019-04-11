@@ -1,0 +1,27 @@
+@startuml
+GlobalTransactionScanner -> GlobalTransactionScanner :设置GlobalTransactionalInterceptor切面，初始化rm，tm客户端
+note left: 继承AbstractAutoProxyCreator实现切面自动代理
+GlobalTransactionScanner -> GlobalTransactionalInterceptor:invoke
+activate GlobalTransactionalInterceptor #FFBBBB
+GlobalTransactionalInterceptor -> GlobalTransactionalInterceptor:扫描GlobalTransactional注解
+GlobalTransactionalInterceptor -> TransactionalTemplate:execute
+deactivate GlobalTransactionalInterceptor
+activate TransactionalTemplate #FFBBBB
+TransactionalTemplate -> DefaultGlobalTransaction:begin开启事务
+DefaultGlobalTransaction ->  DefaultTransactionManage:begin开启事务
+DefaultTransactionManage ->  TM:sendMsg(name)
+TM -->DefaultGlobalTransaction:返回XID
+DefaultGlobalTransaction ->  RootContext :绑定XID
+TransactionalTemplate -> TransactionalTemplate:执行目标方法
+TransactionalTemplate -> DefaultGlobalTransaction:执行目标方法异常：rollback
+DefaultGlobalTransaction ->  DefaultTransactionManage:rollback
+DefaultTransactionManage ->  TM:sendMsg(XID)
+TM -->DefaultGlobalTransaction:返回并设置GlobalStatus(事务状态)
+DefaultGlobalTransaction ->  RootContext :解绑XID
+TransactionalTemplate -> DefaultGlobalTransaction:执行目标方法成功：commit
+DefaultGlobalTransaction ->  DefaultTransactionManage:commit
+DefaultTransactionManage ->  TM:sendMsg(XID)
+TM -->DefaultGlobalTransaction:返回并设置GlobalStatus(事务状态)
+DefaultGlobalTransaction ->  RootContext :解绑XID
+deactivate TransactionalTemplate
+@enduml
