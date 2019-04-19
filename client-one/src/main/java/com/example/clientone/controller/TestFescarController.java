@@ -36,16 +36,17 @@ public class TestFescarController {
 
     @GlobalTransactional(timeoutMills = 300000, name = "spring-cloud-demo-tx")
     @GetMapping(value = "/fescar/feign")
-    public String feign(@RequestParam String uid) {
+    public String feign(@RequestParam String uid,int money) {
+        AccountTbl accountTbl = new AccountTbl();
+        accountTbl.setMoney(money);
+        accountTbl.setUserId(uid);
+        accountTbl.setId(31);
+        accountTblService.update(accountTbl);
         StorageTbl storageTbl = new StorageTbl();
         storageTbl.setCommodityCode(COMMODITY_CODE);
         storageTbl.setCount(ORDER_COUNT);
         storageTbl.setId(1);
         Result<String> echo = serviceBFeginService.echo(storageTbl);
-        AccountTbl accountTbl = new AccountTbl();
-        accountTbl.setMoney(10);
-        accountTbl.setUserId(uid);
-        accountTblService.save(accountTbl);
 
         return SUCCESS;
 
