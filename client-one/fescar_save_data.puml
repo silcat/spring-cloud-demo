@@ -1,27 +1,23 @@
 @startuml
-GlobalTransactionScanner -> GlobalTransactionScanner :设置GlobalTransactionalInterceptor切面，初始化rm，tm客户端
-note left: 继承AbstractAutoProxyCreator实现切面自动代理
-GlobalTransactionScanner -> GlobalTransactionalInterceptor:invoke
-activate GlobalTransactionalInterceptor #FFBBBB
-GlobalTransactionalInterceptor -> GlobalTransactionalInterceptor:扫描GlobalTransactional注解
-GlobalTransactionalInterceptor -> TransactionalTemplate:execute
-deactivate GlobalTransactionalInterceptor
-activate TransactionalTemplate #FFBBBB
-TransactionalTemplate -> DefaultGlobalTransaction:begin开启事务
-DefaultGlobalTransaction ->  DefaultTransactionManage:begin开启事务
-DefaultTransactionManage ->  TM:sendMsg(name)
-TM -->DefaultGlobalTransaction:返回XID
-DefaultGlobalTransaction ->  RootContext :绑定XID
-TransactionalTemplate -> TransactionalTemplate:执行目标方法
-TransactionalTemplate -> DefaultGlobalTransaction:执行目标方法异常：rollback
-DefaultGlobalTransaction ->  DefaultTransactionManage:rollback
-DefaultTransactionManage ->  TM:sendMsg(XID)
-TM -->DefaultGlobalTransaction:返回并设置GlobalStatus(事务状态)
-DefaultGlobalTransaction ->  RootContext :解绑XID
-TransactionalTemplate -> DefaultGlobalTransaction:执行目标方法成功：commit
-DefaultGlobalTransaction ->  DefaultTransactionManage:commit
-DefaultTransactionManage ->  TM:sendMsg(XID)
-TM -->DefaultGlobalTransaction:返回并设置GlobalStatus(事务状态)
-DefaultGlobalTransaction ->  RootContext :解绑XID
-deactivate TransactionalTemplate
+JdbcTemplate -> DataSourceProxy :获取fescar数据代理
+DataSourceProxy ->ConnectionProxy:获取fescar连接代理
+ConnectionProxy -> PreparedStatementProxy: 获取statmen代理
+PreparedStatementProxy-> ExecuteTemplate:execute
+ExecuteTemplate-> UpdateExecutor:execute
+UpdateExecutor->AbstractDMLBaseExecutor:doExecute
+activate AbstractDMLBaseExecutor #FFBBBB
+AbstractDMLBaseExecutor->UpdateExecutor:beforeImage();
+AbstractDMLBaseExecutor->Mybatis:执行目标方法
+AbstractDMLBaseExecutor->UpdateExecutor:afterImage(beforeImage)
+AbstractDMLBaseExecutor->ConnectionProxy:prepareUndoLog(保存事务日志于内存ConnectionContext)
+deactivate AbstractDMLBaseExecutor
+AbstractDMLBaseExecutor->ConnectionProxy:commit
+AbstractDMLBaseExecutor->AbstractDMLBaseExecutor: 目标方法rollback
+activate ConnectionProxy #FFBBBB
+ConnectionProxy->RmRpcClient:上报事务状态(commit)
+ConnectionProxy->PreparedStatementProxy:save unlog
+ConnectionProxy->ConnectionProxy:targe commit
+ConnectionProxy->RmRpcClient:上报事务状态(commit)
+activate ConnectionProxy #FFBBBB
+
 @enduml
